@@ -65,7 +65,18 @@ Weakness point :
 - multitask skill: by working on the front and back end together 
 
 
+5-Saadoun Al-Dhirat 
 
+Key strength:
+
+- Problem-solving 
+- Detail-oriented
+- Planning and organization
+
+
+Weakness point :
+
+- Django Framework : I plan to practice it in the project week and learn more about it .
 
 
 
