@@ -89,3 +89,4 @@ THEN: the website will confirm his order and sent an email about the details and
 
 # Database Schema Diagram
 
+![schema digram](./assest/schema.png)
