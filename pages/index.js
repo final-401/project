@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
+
 export default function Home() {
   return (
     <>
@@ -16,11 +18,17 @@ export default function Home() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
+        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"/>
+        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"/>
+        
       </Head>
       
 
       <Navbar />
+
       <HomePage/>
+    
+      <Footer />
     </>
   );
 }

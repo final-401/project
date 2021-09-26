@@ -1,3 +1,5 @@
+
+import React from 'react'   
 import React, { Component } from 'react';
 import { useRouter } from 'next/router'
 import Image from "next/image"
