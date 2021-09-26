@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="relative w-11/12 pt-8 pb-6 mx-auto rounded-xl bg-blueGray-200">
+    <div className="relative w-11/12 pt-8 mx-auto rounded-xl bg-blueGray-200 h-96">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
@@ -83,7 +83,7 @@ export default function Footer() {
                       className="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                       href="/Veterinary"
                     >
-                    Veterinary
+                      Veterinary
                     </a>
                   </li>
                 </ul>
@@ -147,6 +147,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
