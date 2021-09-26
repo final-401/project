@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import HomePage from "../components/HomePage";
+
 export default function Home() {
   return (
     <>
@@ -24,7 +26,10 @@ export default function Home() {
 
       <Navbar />
 
+      <HomePage/>
+    
       <Footer />
     </>
   );
 }
+
