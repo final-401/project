@@ -41,26 +41,24 @@ export default function Slider() {
         },
     ]
     return (
-        <div>
-            <main>
-                {/* <h3 class="inline-block align-middle w-screen"> from slider</h3> */}
+        <>
+                {/* <h3 className="inline-block w-screen align-middle"> from slider</h3> */}
                 <br></br>
-                <div class="flex justify-center w-4/5 h-1/5">
-                    <Carousel class=" mt-16 rounded-md shadow  w-screen h-1/5" >
-                        <div ><Image class="object-fill shadow h-1/5"  src={img9} alt="img1" height="450">
+                <div className="flex justify-center w-4/5 h-1/5">
+                    <Carousel className="w-screen mt-16 rounded-md shadow h-1/5" >
+                        <div ><Image className="object-fill shadow h-1/5"  src={img9} alt="img1" height="450">
                         </Image>
                           <a href="#">
-                          <button class="absolute left-12 mt-72 ml-9 bg-yellow-400 hover:bg-yellow-500  md:w-36 h-9 rounded" variant="contained" >SHOP NOW</button>
+                          <button className="absolute bg-yellow-400 rounded left-12 mt-72 ml-9 hover:bg-yellow-500 md:w-36 h-9" variant="contained" >SHOP NOW</button>
                           </a> 
 
                               </div>
-                        <div><Image class="object-fill shadow h-1/5"src={img3} alt="img3" height="450"></Image></div>
-                        <div><Image class="object-fill shadow h-1/5" src={img1} alt="img2" height="740" ></Image></div>
-                        <div > <Image  class="object-fill shadow h-1/5" src={img7} alt="img7" height="635"></Image></div>
-                        <div ><Image class="object-fill shadow h-1/5" src={img4} alt="img4" height="450"></Image></div>
+                        <div><Image className="object-fill shadow h-1/5"src={img3} alt="img3" height="450"></Image></div>
+                        <div><Image className="object-fill shadow h-1/5" src={img1} alt="img2" height="740" ></Image></div>
+                        <div > <Image  className="object-fill shadow h-1/5" src={img7} alt="img7" height="635"></Image></div>
+                        <div ><Image className="object-fill shadow h-1/5" src={img4} alt="img4" height="450"></Image></div>
                     </Carousel>
-                </div>
-            </main>
-        </div>
+                </div>     
+        </>
     )
 }
