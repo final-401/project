@@ -7,6 +7,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Link from "@mui/material/Link";
 import { makeStyles } from "@mui/styles";
 import BadgeAvatars from "./UserBudget";
+import { useAuth } from '../contexts/auth'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-
+  const { user, login, logout } = useAuth();
   return (
     <AppBar
       className={classes.appBar}
@@ -168,7 +169,7 @@ export default function ButtonAppBar() {
             href="#"
             sx={{ my: 1, mx: 1.5 }}
             underline="none"
-          >
+            onClick={logout}          >
             Logout
           </Link>
         </nav>

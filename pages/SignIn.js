@@ -35,8 +35,12 @@ export default function SignIn() {
     console.log(user)
   };
 
+  
+
   return (
-    <ThemeProvider theme={theme}>
+    <div>
+      <button onClick={logout}>logout</button>
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -74,7 +78,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            {user?<p>{user}</p>:<p>nooooooooooo</p>}
+            {user?<p>{user.firstname}</p>:<p>nooooooooooo</p>}
             <Button
               type="submit"
               fullWidth
@@ -94,8 +98,12 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-      
+        
       </Container>
     </ThemeProvider>
+
+    </div>
+    
+   
   );
 }

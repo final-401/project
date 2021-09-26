@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp"
 export default function Home() {
   return (
     <>
@@ -26,7 +27,7 @@ export default function Home() {
 
       <Navbar />
 
-      <SignIn></SignIn>
+      <SignUp></SignUp>
     
       <Footer />
     </>

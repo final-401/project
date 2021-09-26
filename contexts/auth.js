@@ -32,14 +32,20 @@ export function AuthProvider(props) {
             user: {
                 username: decodedAccess.username,
                 email: decodedAccess.email,
-                id: decodedAccess.user_id
+                id: decodedAccess.user_id,
+                role: decodedAccess.role,
+                firstname: decodedAccess.firstname,
+                lastname: decodedAccess.lastname
             },
+            login,
+            logout,
         }
 
-        setState(({prevState}) => ({ ...prevState ,...newState }));
+        setState(({prevState}) => ({ ...prevState, ...newState }));
     }
 
     function logout() {
+        console.log('hiii')
         const newState = {
             tokens: null,
             user: null,
