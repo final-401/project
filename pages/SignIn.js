@@ -12,23 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useAuth } from '../contexts/auth'
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
-const theme = createTheme();
+
 
 export default function SignIn() {
+  const { user, login, logout } = useAuth();
+  const theme = createTheme();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,7 +27,12 @@ export default function SignIn() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+
     });
+    let email=data.get('email')
+    let password= data.get('password')
+    login(email,password)
+    console.log(user)
   };
 
   return (
@@ -78,7 +74,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-           
+            {user?<p>{user}</p>:<p>nooooooooooo</p>}
             <Button
               type="submit"
               fullWidth
