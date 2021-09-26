@@ -1,10 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
+
 import SignIn from "./SignIn";
 import SignUp from "./SignUp"
+
+import Nav from "../components/Nav";
+
 export default function Home() {
   return (
     <>
@@ -19,18 +22,27 @@ export default function Home() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"/>
-        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"/>
-        
+        <link
+          rel="stylesheet"
+          href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+        />
       </Head>
-      
 
-      <Navbar />
+      <header className="flex flex-col justify-center my-5 bg-green-700 align-center">
+        <Nav />
+      </header>
 
-      <SignUp></SignUp>
-    
-      <Footer />
+
+      <main className="mx-auto bg-black xl:container max-width:1280px">
+        <HomePage />
+      </main>
+
+        <Footer />
+
     </>
   );
 }
-
