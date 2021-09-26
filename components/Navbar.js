@@ -7,6 +7,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Link from "@mui/material/Link";
 import { makeStyles } from "@mui/styles";
 import BadgeAvatars from "./UserBudget";
+import { positions } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -14,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
   },
   appBar: {
-    width: "75%",
+    width: "85%",
     backgroundColor: "#001f3f",
-    margin: "auto",
-    marginTop: "1.5rem",
+    marginTop: "1.2rem",
+    marginBottom: "1.5rem",
     borderRadius: "12px",
     padding: "12px",
   },
@@ -61,7 +62,7 @@ export default function ButtonAppBar() {
   return (
     <AppBar
       className={classes.appBar}
-      position="static"
+      position="fixed"
       elevation={0}
       sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
     >
@@ -174,7 +175,7 @@ export default function ButtonAppBar() {
         </nav>
 
         <IconButton className={classes.shoppingIcon} aria-label="shopping-cart">
-          <AddShoppingCartIcon sx={{ mr: 2 }} />
+          <AddShoppingCartIcon className={classes.shoppingIcon} sx={{ mr: 2 }} />
           <h5 className={classes.itemCounter}>0</h5>
         </IconButton>
 
