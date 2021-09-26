@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { assertExpressionStatement } from '@babel/types';
+import axios from 'axios'
 
 
 
@@ -20,7 +22,7 @@ export default function SignUp() {
   const [role,setRole]=useState('')
   const theme = createTheme();
   const handleChange =e =>setRole(e.target.value)
-  const handleSubmit = (event) => {
+   const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
@@ -34,6 +36,24 @@ export default function SignUp() {
       role: data.get('role'),
       profile: data.get('profile')
     });
+    const userRegistData={
+      'email': data.get('email'),
+      'password':data.get('password'),
+      'user_name': data.get('user'),
+      'phone': data.get('phone'),
+      'first_name': data.get('firstname'),
+      'role': data.get('role'),
+      'last_name': data.get('lastname'),
+      'address': data.get('address'),
+    }
+    const url='http://127.0.0.1:8000/api/v1/user/create/'
+    try{
+      const response = await axios.post(url, userRegistData );
+      console.log(response)
+    }
+    catch(error){
+      console.log(error)
+    }
   };
 
   return (
@@ -161,7 +181,7 @@ export default function SignUp() {
                     label="profile"
                     autoFocus
                     ></input>
-                  </Grid>
+                  </Grid> 
                 
                 </Grid>
                 <Button
