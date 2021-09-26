@@ -2,6 +2,10 @@ import Head from "next/head";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
+
+import SignIn from "./SignIn";
+import SignUp from "./SignUp"
+
 import Nav from "../components/Nav";
 
 export default function Home() {
@@ -32,6 +36,7 @@ export default function Home() {
         <Nav />
       </header>
 
+
       <main className="mx-auto bg-black xl:container max-width:1280px">
         <HomePage />
       </main>
@@ -39,6 +44,7 @@ export default function Home() {
       <footer className="pt-16 pb-12 bg-red-500">
         <Footer />
       </footer>
+    
     </div>
   );
 }
