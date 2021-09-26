@@ -1,5 +1,10 @@
-export default function Slider(){
+
+export default function Slider() {
+
+
     return (
-        
+        <div>
+
+        </div>
     )
 }

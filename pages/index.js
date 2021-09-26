@@ -2,6 +2,7 @@ import Head from 'next/head'
 import SignUp from './SignUp'
 import SignIn from './SignIn'
 import Link from '@mui/material/Link';
+import HomePage from '../components/HomePage';
 
 export default function Home() {
   return (
@@ -10,9 +11,9 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
-               
+      <HomePage></HomePage> 
       </main>
 
      
