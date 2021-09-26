@@ -1,5 +1,3 @@
-
-import React from 'react'   
 import React, { Component } from 'react';
 import { useRouter } from 'next/router'
 import Image from "next/image"
@@ -47,7 +45,7 @@ export default function Slider() {
             <main>
                 {/* <h3 class="inline-block align-middle w-screen"> from slider</h3> */}
                 <br></br>
-                <div class="flex justify-center w-screen h-1/5">
+                <div class="flex justify-center w-4/5 h-1/5">
                     <Carousel class=" mt-16 rounded-md shadow  w-screen h-1/5" >
                         <div ><Image class="object-fill shadow h-1/5"  src={img9} alt="img1" height="450">
                         </Image>
