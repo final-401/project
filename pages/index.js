@@ -10,7 +10,7 @@ import Nav from "../components/Nav";
 
 export default function Home() {
   return (
-    <>
+    <div className="">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -32,7 +32,7 @@ export default function Home() {
         />
       </Head>
 
-      <header className="flex flex-col justify-center my-5 bg-green-700 align-center">
+      <header className="flex flex-col justify-center my-5 align-center">
         <Nav />
       </header>
 
@@ -41,8 +41,10 @@ export default function Home() {
         <HomePage />
       </main>
 
+      <footer className="pt-16 pb-12 bg-red-500">
         <Footer />
-
-    </>
+      </footer>
+    
+    </div>
   );
 }
