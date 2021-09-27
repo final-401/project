@@ -54,7 +54,7 @@ export default function SignUp() {
       'picture':imageurl
 
     }
-    const url='http://127.0.0.1:8000/api/v1/user/create/'
+    const url='http://127.0.0.1:8000/api/v1/user/create/' 
     try{
       const response = await axios.post(url, userRegistData );
       console.log(response)
@@ -62,7 +62,6 @@ export default function SignUp() {
     catch(error){
       console.log(error)
     }
-
   };
 
 
