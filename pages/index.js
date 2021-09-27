@@ -3,13 +3,17 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
 import SignIn from "./SignIn";
-import SignUp from "./SignUp"
+
+import SignUp from "./SignUp";
+import Supplies from "./Supplies"
+
+
 import Nav from "../components/Nav";
 
 export default function Home() {
   return (
     <div className="">
-      <Head>
+      {/* <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -42,7 +46,8 @@ export default function Home() {
       <footer className="pt-16 pb-12 bg-red-500">
         <Footer />
       </footer>
-    
+     */}
+     <Supplies/>
     </div>
   );
 }
