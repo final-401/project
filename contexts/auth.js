@@ -1,61 +1,61 @@
-import { createContext, useContext, useState } from 'react';
-import jwt from 'jsonwebtoken';
-import axios from 'axios'
-const baseUrl = 'http://127.0.0.1:8000';
-const tokenUrl = baseUrl + '/api/v1/token/';
+import { createContext, useContext, useState } from "react";
+import jwt from "jsonwebtoken";
+import axios from "axios";
+const baseUrl = "http://127.0.0.1:8000";
+const tokenUrl = baseUrl + "/api/v1/token/";
 
 const AuthContext = createContext();
 
 export function useAuth() {
-    const auth = useContext(AuthContext);
-    if (!auth) throw new Error('You forgot AuthProvider!');
-    return auth;
+  const auth = useContext(AuthContext);
+  if (!auth) throw new Error("You forgot AuthProvider!");
+  return auth;
 }
 
 export function AuthProvider(props) {
+  const [state, setState] = useState({
+    tokens: null,
+    user: null,
+    login,
+    logout,
+  });
 
-    const [state, setState] = useState({
-        tokens: null,
-        user: null,
-        login,
-        logout,
-    });
+  async function login(email, password) {
+    const response = await axios.post(tokenUrl, { email, password });
 
-    async function login(email, password) {
+    const decodedAccess = jwt.decode(response.data.access);
+    localStorage.setItem("access", response.data.access);
+    localStorage.setItem("refresh", response.data.refresh);
+    console.log(decodedAccess);
+    const newState = {
+      tokens: response.data,
+      user: {
+        username: decodedAccess.username,
+        email: decodedAccess.email,
+        id: decodedAccess.user_id,
+        role: decodedAccess.role,
+        firstname: decodedAccess.firstname,
+        lastname: decodedAccess.lastname,
+      },
+      login,
+      logout,
+    };
 
-        const response = await axios.post(tokenUrl, { email, password });
+    setState(({ prevState }) => ({ ...prevState, ...newState }));
+  }
 
-        const decodedAccess = jwt.decode(response.data.access);
-        console.log(decodedAccess)
-        const newState = {
-            tokens: response.data,
-            user: {
-                username: decodedAccess.username,
-                email: decodedAccess.email,
-                id: decodedAccess.user_id,
-                role: decodedAccess.role,
-                firstname: decodedAccess.firstname,
-                lastname: decodedAccess.lastname
-            },
-            login,
-            logout,
-        }
+  function logout() {
+    console.log("hiii");
+    const newState = {
+      tokens: null,
+      user: null,
+    };
+    setState((prevState) => ({ ...prevState, ...newState }));
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("access");
+  }
 
-        setState(({prevState}) => ({ ...prevState, ...newState }));
-    }
-
-    function logout() {
-        console.log('hiii')
-        const newState = {
-            tokens: null,
-            user: null,
-        }
-        setState(prevState => ({ ...prevState, ...newState }));
-    }
-
-    return (
-        <AuthContext.Provider value={state}>
-            {props.children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={state}>{props.children}</AuthContext.Provider>
+  );
 }
