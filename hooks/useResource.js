@@ -10,11 +10,7 @@ export default function useResource() {
     const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
 
     async function fetchResource(url) {
-        let acctoken = localStorage.getItem("access");
-        if (!acctoken) {
-            return;
-        }
-
+       
         try {
             const response = await axios.get(url);
             console.log('this is respond',response)
@@ -39,7 +35,7 @@ export default function useResource() {
     async function deleteResource(id) {
 
         try {
-            const url = apiUrl + id;
+            const url = apiUrl + id+'/';
             await axios.delete(url, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {

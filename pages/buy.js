@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import useResource from '../hooks/useResource'
 import jwt from 'jsonwebtoken';
+import ownerDocument from '@mui/utils/ownerDocument';
 
 
 export default function Home() {
@@ -127,6 +128,12 @@ export default function Home() {
                         
                         </CardContent>
 
+                            
+                        </div>
+                        <div>
+                            {user&&user.user_id==item.user.id? <Button onClick={()=>deleteResource(item.id)} >Delete</Button>:<p></p>}
+                        
+                        
                             
                         </div>
                        
