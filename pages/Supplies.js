@@ -14,17 +14,28 @@ import jwt from "jsonwebtoken";
 
 export default function Supplies() {
   const { createResource } = useResourceAddToCart();
-  const { createResourceCart } = useResourceAddCart();
+  const { resources,createResourceCart } = useResourceAddCart();
   const [supplies, setSupplies] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState([]);
+  const [order, setOrder] = useState([]);
+
 
   useEffect(() => {
     let acctoken = localStorage.getItem("access");
     const decodedAccess = jwt.decode(acctoken);
     console.log(decodedAccess);
     setUser(decodedAccess);
-  }, []);
+    console.log(resources);
+  }, [resources]);
+
+
+  // useEffect(() => {
+  //   if (resources){
+  //     setOrder( resources)
+  //     console.log(order);
+  //   }
+  // }, [resources,order])
 
   useEffect(async () => {
     const url = "http://127.0.0.1:8000/api/v1/supplies/";
@@ -109,31 +120,56 @@ export default function Supplies() {
   ];
 
   const addToCart = (item) => {
-    console.log("suppliesItem", item);
-    console.log(user.name);
-    setCartItems((previousState) => [...previousState, item]);
+    let orderExist=false
+    let cartNum
+  
     if (user) {
       const cartData = {
         owner: user.user_id,
         ref_code: user.username + " " + user.user_id,
       };
-      createResourceCart(cartData).then((response) => {
-          console.log("111111" ,response)
-          
+    let count 
+
+
+    resources.map((item)=>{
+        count=parseInt(item.id)
+        count+=1
+
+        if (item.owner == user.user_id){
+          console.log(item.id);
+          cartNum=item.id
+          orderExist =true
+
+        }
       })
-      //   try {
-      //     createResourceCart(cartData).then((result) => {
-      //       console.log("11111111", result);
-      //       const objData = {
-      //         product_id: null,
-      //         order: null,
-      //       };
-      //       // createResource
-      //     });
-      //     create;
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
+      
+      const objToAddINCart={
+          "product_id":item.id,
+          "order": cartNum
+      }
+      if (!orderExist){
+        createResourceCart(cartData).then((response) => {
+        if (cartNum){
+          console.log(count);
+          createResource(objToAddINCart)
+        }
+        else{
+          console.log("else" + count);
+
+          const objToAddINCart={
+            "product_id":item.id,
+            "order": count
+        }
+        createResource(objToAddINCart)
+
+        }
+        
+      })
+    }
+    else{
+      createResource(objToAddINCart)
+    }
+
     }
   };
 
