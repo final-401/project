@@ -131,7 +131,7 @@ export default function Home() {
                             
                         </div>
                         <div>
-                            {user&&user.user_id==item.user.id? <Button onClick={()=>deleteResource(item.id)} >delete</Button>:<p></p>}
+                            {user&&user.user_id==item.user.id? <Button onClick={()=>deleteResource(item.id)} >Delete</Button>:<p></p>}
                         
                         
                             
