@@ -13,7 +13,7 @@ import Nav from "../components/Nav";
 export default function Home() {
   return (
     <div className="">
-      {/* <Head>
+        <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -46,7 +46,8 @@ export default function Home() {
       <footer className="pt-16 pb-12 bg-red-500">
         <Footer />
       </footer>
-     */}
+
+      
      <Supplies/>
     </div>
   );

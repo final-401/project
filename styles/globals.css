@@ -9,7 +9,6 @@
 
 @layer components {
   body {
-    @apply  bg-blue-500;
   }
 }
 
