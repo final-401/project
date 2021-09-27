@@ -1,8 +1,8 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import axios from 'axios'
-
+import useResourceAddToCart from '../hooks/useResourceAddToCart';
 
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,8 +13,9 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 export default function Supplies() {
 
+    const { createResource } = useResourceAddToCart();
     const [supplies, setSupplies] = useState([])
-     useEffect  (async () => {
+    useEffect(async () => {
         const url = 'http://127.0.0.1:8000/api/v1/supplies/'
         try {
             const response = await axios.get(url);
@@ -101,8 +102,24 @@ export default function Supplies() {
         }
     ]
 
+    const addToCart=((item)=>{
+        console.log(item);
+    })
+        // const url = 'http://127.0.0.1:8000/api/v1/cart/'
+        // try {
+        //     const response = await axios.post(url);
+        //     // setSupplies(previousState =>...pervious)
+        //     const data = response.data
+        //     setSupplies(data);
 
-console.log(typeof(supplies));
+        //     console.log(response.data)
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
+
+    
+    console.log(typeof (supplies));
     return (
         <div className="">
 
@@ -136,7 +153,7 @@ console.log(typeof(supplies));
                                 </CardContent>
                             </CardActionArea>
                             <CardActions >
-                                <Button size="small" color="primary"  >
+                                <Button onClick={()=>addToCart(item)} size="small" color="primary"  >
                                     Add To Cart
                                 </Button>
                             </CardActions>
