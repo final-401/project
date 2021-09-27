@@ -10,7 +10,8 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 600,
     bgcolor: 'background.paper',
-    border: '1px solid #000',
+    border: '2px solid green ',
+    borderRadius:'80px',
     boxShadow: 24,
     p: 4,
 };
@@ -28,13 +29,13 @@ export default function Vetform(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} >
-                    <form class="w-full max-w-lg mx-auto my-5" onSubmit={props.handleSubmit}>
+                    <form class="w-full max-w-lg mx-auto my-5 " onSubmit={props.handleSubmit}>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="clinc-name">
                                     Vet Clinic Name
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="clinc-name" type="text" name="name" />
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="clinc-name" type="text" name="name" />
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="telephone">
@@ -81,7 +82,7 @@ export default function Vetform(props) {
                             </div>
                         </div>
 
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                        <button className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
                             Add Clinc
                         </button>
                     </form>
