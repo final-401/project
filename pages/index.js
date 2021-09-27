@@ -2,10 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
-
 import SignIn from "./SignIn";
 import SignUp from "./SignUp"
-
 import Nav from "../components/Nav";
 
 export default function Home() {

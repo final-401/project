@@ -47,13 +47,7 @@ export default function SignUp() {
       'address': data.get('address'),
     }
     const url='http://127.0.0.1:8000/api/v1/user/create/'
-    try{
-      const response = await axios.post(url, userRegistData );
-      console.log(response)
-    }
-    catch(error){
-      console.log(error)
-    }
+    
   };
 
   return (
