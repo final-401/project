@@ -1,22 +1,23 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
-export const apiUrl = 'http://127.0.0.1:8000/api/v1/cart/';
+export const apiUrl = 'http://127.0.0.1:8000/api/v1/cart/item/';
 import { useAuth } from '../contexts/auth'
 
-export default function useResourceAddToCart() {
-
+export default function useResourceAddCart() {
+    
     const { tokens, logout } = useAuth()
-
-    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
-
+    
+    const { data, error, mutate } = useSWR([apiUrl], fetchResource);
+    
     async function fetchResource(url) {
-
-        if (!tokens) {
+        const acctoken = localStorage.getItem("access");
+        if (!acctoken) {
             return;
         }
 
         try {
+            console.log("12345678 here");
             const response = await axios.get(url, config());
 
             return response.data;
@@ -29,8 +30,9 @@ export default function useResourceAddToCart() {
     async function createResource(info) {
 
         try {
-            await axios.post(apiUrl, info, config());
+            const response = await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
+            return response.data
         } catch (error) {
             handleError(error);
         }
@@ -55,10 +57,10 @@ export default function useResourceAddToCart() {
 
     // helper function to handle getting Authorization headers EXACTLY right
     function config() {
-
+        let acctoken = localStorage.getItem("access");
         return {
             headers: {
-                'Authorization': 'Bearer ' + tokens.access
+                'Authorization': 'Bearer ' + acctoken
             }
         }
     }

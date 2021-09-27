@@ -5,18 +5,19 @@ export const apiUrl = 'http://127.0.0.1:8000/api/v1/cart/';
 import { useAuth } from '../contexts/auth'
 
 export default function useResourceAddCart() {
-   
+    
     const { tokens, logout } = useAuth()
-
-    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
-
+    
+    const { data, error, mutate } = useSWR([apiUrl], fetchResource);
+    
     async function fetchResource(url) {
-
-        if (!tokens) {
+        const acctoken = localStorage.getItem("access");
+        if (!acctoken) {
             return;
         }
 
         try {
+            console.log("12345678 here");
             const response = await axios.get(url, config());
 
             return response.data;
