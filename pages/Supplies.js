@@ -119,6 +119,7 @@ export default function Supplies() {
     },
   ];
 
+  
   const addToCart = (item) => {
     let orderExist=false
     let cartNum

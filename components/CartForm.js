@@ -10,8 +10,9 @@ export default function CartForm() {
   const [totPrice, settotPrice] = useState(0);
   const [user, setUser] = useState([]);
   const [cartNum, setcartNum] = useState(0);
+  const [cartData ,setcartData]=useState([])
 
-  const { resources } = useResourceAddCart();
+  const { resources ,deleteResource} = useResourceAddCart();
 
 
   useEffect(() => {
@@ -26,7 +27,6 @@ export default function CartForm() {
   useEffect(() => {
     let numCart = 0
     if (user) {
-
       if (resources) {
         resources.map((item) => {
           console.log(item.owner, "fyghuj" + user.user_id);
@@ -41,7 +41,7 @@ export default function CartForm() {
       console.log(numCart);
     };
 
-  }, [resources, cartNum])
+  }, [resources])
 
 
 
@@ -51,8 +51,8 @@ export default function CartForm() {
         const url = `http://127.0.0.1:8000/api/v1/cart/${cartNum}/`
         try {
           const response = await axios.get(url);
-          console.log('this is respond', response.data)
-          return response.data;
+          console.log('this is respond', response.data.order)
+          setcartData(response.data.order)
 
         } catch (error) {
           console.log(error);
@@ -62,23 +62,9 @@ export default function CartForm() {
 
 
 
-  }, [cartNum])
+  }, [resources,cartNum])
 
-  async function fetchResource(url) {
-    let acctoken = localStorage.getItem("access");
-    if (!acctoken) {
-      return;
-    }
-
-    try {
-      const response = await axios.get(url);
-      console.log('this is respond', response)
-      return response.data;
-
-    } catch (error) {
-      handleError(error);
-    }
-  }
+  
 
   const suppliesData = [
     {
@@ -211,6 +197,25 @@ export default function CartForm() {
     setTotalPrice(val)
   }
 
+
+  const handleCheckout =(()=>{
+    var ans = window.prompt("Confirm checkout Enter Yes: ");
+    if ( ans== "yes"){
+      cartData.map((item)=>{
+
+        deleteResource(item.id)
+        
+      })
+    }
+
+  })
+  
+
+  
+
+
+  
+
   return (
     <div className="">
       <div className="container mx-auto mt-10 rounded bg-blueGray-200">
@@ -235,7 +240,7 @@ export default function CartForm() {
               </h3>
             </div>
             {/* Products */}
-            {cartItems?.map((supply, index) => (
+            {cartData?.map((supply, index) => (
               <div
                 key={supply._id}
                 className="flex items-center px-6 py-5 -mx-8 hover:bg-gray-100"
@@ -244,17 +249,17 @@ export default function CartForm() {
                   <div className="w-20">
                     <img
                       className="h-24"
-                      src={supply.picture}
-                      alt={supply.name}
+                      src={supply.product.picture}
+                      alt={supply.product.name}
                     />
                   </div>
                   <div className="flex flex-col justify-between flex-grow ml-4">
                     <span className="text-sm font-bold">{supply.name}</span>
                     <span className="my-2 text-xs text-red-500">
-                      {supply.discription}
+                      {supply.product.description}
                     </span>
                     {/*remove button*/}
-                    <button class="bg-red-700 hover:bg-red-500 text-white py-2 w-24 rounded text-sm">
+                    <button onClick={()=>deleteResource(supply.id)} class="bg-red-700 hover:bg-red-500 text-white py-2 w-24 rounded text-sm">
                       Remove
                     </button>
                   </div>
@@ -274,7 +279,7 @@ export default function CartForm() {
                   <input
                     className="w-12 mx-4 border te xt-center"
                     type="text"
-                    value={supply.quantity}
+                    value={supply.product.quantity}
                   />
 
                   <svg
@@ -288,10 +293,10 @@ export default function CartForm() {
                   </svg>
                 </div>
                 <span className="w-1/5 text-sm font-semibold text-center">
-                  {`${supply.price}$`}
+                  {`${supply.product.price}$`}
                 </span>
                 <span className="w-1/5 text-sm font-semibold text-center">
-                  {`${supply.price * supply.quantity}$`}
+                  {`${supply.product.price * supply.product.quantity}$`}
                 </span>
               </div>
             ))}
@@ -333,7 +338,7 @@ export default function CartForm() {
               Order Summary
             </h1>
             <div className="flex justify-between mt-10 mb-5">
-              <span className="text-sm font-semibold uppercase">{`ITEMS -${suppliesData.length}`}</span>
+              <span className="text-sm font-semibold uppercase">{`ITEMS -${cartData.length}`}</span>
               <span className="text-sm font-semibold">
                 {`${totalPriceHandler()}$`}
               </span>
@@ -376,7 +381,7 @@ export default function CartForm() {
                 <span>Total cost</span>
                 <span>{`${totalPrice}$`}</span>
               </div>
-              <button className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
+              <button onClick={handleCheckout} className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
                 Checkout
               </button>
             </div>

@@ -41,7 +41,7 @@ export default function useResourceAddCart() {
     async function deleteResource(id) {
 
         try {
-            const url = apiUrl + id;
+            const url = apiUrl +"item/" + id +"/";
             await axios.delete(url, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
