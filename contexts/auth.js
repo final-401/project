@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 const baseUrl = "http://127.0.0.1:8000";
 const tokenUrl = baseUrl + "/api/v1/token/";
+import Router from 'next/router'
+
 
 const AuthContext = createContext();
 
@@ -22,14 +24,18 @@ export function AuthProvider(props) {
   });
 
   async function login(email, password) {
-    const response = await axios.post(tokenUrl, { email, password });
+    // const response = await axios.post(tokenUrl, { email, password });
+    try{
+    const responseData = await axios.post(tokenUrl, { email, password })
+    // .then((response) => { console.log("response is" + response) })
+    // .catch((error) => { alert('please check the email and password')});
 
-    const decodedAccess = jwt.decode(response.data.access);
-    localStorage.setItem("access", response.data.access);
-    localStorage.setItem("refresh", response.data.refresh);
+    const decodedAccess = jwt.decode(responseData.data.access);
+    localStorage.setItem("access", responseData.data.access);
+    localStorage.setItem("refresh", responseData.data.refresh);
     console.log(decodedAccess);
     const newState = {
-      tokens: response.data,
+      tokens: responseData.data,
       user: {
         username: decodedAccess.username,
         email: decodedAccess.email,
@@ -40,9 +46,17 @@ export function AuthProvider(props) {
       },
       login,
       logout,
+    
     };
 
     setState(({ prevState }) => ({ ...prevState, ...newState }));
+    Router.push('/')
+
+  }
+  catch(error){
+    alert('please check the email and password')
+    console.log(error)
+  }
   }
 
   function logout() {

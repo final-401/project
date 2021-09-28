@@ -54,6 +54,7 @@ export default function Supplies() {
 
 
 
+  
   const addToCart = (item) => {
     let orderExist=false
     let cartNum
@@ -74,10 +75,9 @@ export default function Supplies() {
           console.log(item.id);
           cartNum=item.id
           orderExist =true
-
+          
         }
       })
-      
       const objToAddINCart={
           "product_id":item.id,
           "order": cartNum
@@ -100,12 +100,15 @@ export default function Supplies() {
         }
         
       })
+     
+
     }
     else{
       createResource(objToAddINCart)
     }
 
     }
+    localStorage.setItem("cartNum",cartNum);
   };
 
   return (
