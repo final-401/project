@@ -2,7 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="relative w-11/12 pt-8 mx-auto rounded-xl bg-blueGray-200 h-96">
+    
+    <div className="relative w-full pt-8 mx-auto rounded bg-blueGray-200 h-96 xl:container max-width:1280px">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
