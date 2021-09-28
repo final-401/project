@@ -8,6 +8,7 @@ import {storage} from '../firebase'
 import Nav from "../components/Nav"
 import Footer from "../components/Footer"
 
+
 export default function Veterinary() {
     const { resources, loading, createResource, deleteResource , } = useResourceVet(); 
     const[user, setUser]=useState([])
@@ -92,6 +93,7 @@ export default function Veterinary() {
         return (
             <>
             <Nav/>
+
 
 
             <h1 className="text-2xl text-grey-darkest mt-5 grid justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
