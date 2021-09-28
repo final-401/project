@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
-export const apiUrl = 'http://127.0.0.1:8000/api/v1/pet/';
+export const apiUrl = 'https://pets-api-v1.herokuapp.com/api/v1/pet/';
 
 export default function useResource() {
 
