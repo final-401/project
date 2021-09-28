@@ -15,6 +15,7 @@ import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BadgeAvatars from "./UserBudget";
+import img from "../assest/logo.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -116,7 +117,7 @@ export default function BackToTop(props) {
           {/* add icon here  */}
           <img
             className="hidden w-auto h-8 mr-3 lg:block"
-            src=""
+            src={img}
             alt="Workflow"
           />
           <Typography
@@ -146,7 +147,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/Supplies"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -157,7 +158,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/buy"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -168,7 +169,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/Veterinary"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -190,7 +191,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/SignIn"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -201,7 +202,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/SignUp"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
