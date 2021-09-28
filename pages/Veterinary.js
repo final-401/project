@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import useResourceVet from '../hooks/useResourceVet'
 import jwt from 'jsonwebtoken';
 import {storage} from '../firebase'
-import Nav from "../components/Nav";
+import Nav from "../components/Nav"
+import Footer from "../components/Footer"
 
 
 export default function Veterinary() {
@@ -92,11 +93,20 @@ export default function Veterinary() {
         return (
             <>
             <Nav/>
+
+
+
+            <h1 className="text-2xl text-grey-darkest mt-5 grid justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
+            <h1 className="text-2xl text-grey-darkest mt-5 grid justify-items-center">If your are a doctor and have a clinc you can add it </h1>
+            <div className='m-auto align-middle mt-5 w-72'>
+            <button onClick={handleOpen} className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" >Add Your Clinc In Our Website</button>
+            </div>
+
             <div className="grid grid-cols-2">
                 {clinic.map((item) => {
                     return (
                         
-                        <div id="app" className="flex mx-10 mt-10 bg-white rounded shadow-md w-128 h-60 card text-grey-darkest">
+                        <div id="app" className="flex mx-20 mt-10 bg-white rounded shadow-md w-120 h-60 card text-grey-darkest">
                             <img className="w-1/2 h-full rounded-l-sm" src={item.picture} alt="Room Image" />
                             <div className="flex flex-col w-full">
                                 <div className="flex-1 p-4 pb-0">
@@ -115,11 +125,10 @@ export default function Veterinary() {
                 })}
             </div>
             <div className="mt-4 ml-8">
-                <Button onClick={handleOpen} >Add Your Clinc In Our Website</Button>
                 <Vetform handleInputChange={handleInputChange} handleSubmit={handleSubmit} open={open} handleClose={handleClose} />
             </div>
 
-
+                <Footer/>
         </>
     )
 }

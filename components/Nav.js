@@ -17,6 +17,8 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BadgeAvatars from "./UserBudget";
 import jwt from 'jsonwebtoken';
 import { useAuth } from '../contexts/auth'
+import img from "../assest/logo.png"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -127,7 +129,7 @@ export default function BackToTop(props) {
           {/* add icon here  */}
           <img
             className="hidden w-auto h-8 mr-3 lg:block"
-            src=""
+            src={img}
             alt="Workflow"
           />
           <Typography
