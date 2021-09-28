@@ -1,8 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useResourceAddCart from "../hooks/useResourceAddCart";
+import jwt from "jsonwebtoken";
+import axios from "axios";
+
+
 
 export default function CartForm() {
   const [totalPrice, setTotalPrice] = useState(0);
-  const [totPrice , settotPrice] = useState(0);
+  const [totPrice, settotPrice] = useState(0);
+  const [user, setUser] = useState([]);
+  const [cartNum, setcartNum] = useState(0);
+
+  const { resources } = useResourceAddCart();
+
+
+  useEffect(() => {
+    let acctoken = localStorage.getItem("access");
+    const decodedAccess = jwt.decode(acctoken);
+    console.log(decodedAccess);
+    setUser(decodedAccess);
+
+  }, []);
+
+
+  useEffect(() => {
+    let numCart = 0
+    if (user) {
+
+      if (resources) {
+        resources.map((item) => {
+          console.log(item.owner, "fyghuj" + user.user_id);
+          if (item.owner == user.user_id) {
+            console.log(item.id);
+            numCart = item.id
+          }
+        })
+
+      }
+      setcartNum(numCart)
+      console.log(numCart);
+    };
+
+  }, [resources, cartNum])
+
+
+
+  useEffect(async () => {
+    if (user) {
+      if (cartNum) {
+        const url = `http://127.0.0.1:8000/api/v1/cart/${cartNum}/`
+        try {
+          const response = await axios.get(url);
+          console.log('this is respond', response.data)
+          return response.data;
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
+
+
+  }, [cartNum])
+
+  async function fetchResource(url) {
+    let acctoken = localStorage.getItem("access");
+    if (!acctoken) {
+      return;
+    }
+
+    try {
+      const response = await axios.get(url);
+      console.log('this is respond', response)
+      return response.data;
+
+    } catch (error) {
+      handleError(error);
+    }
+  }
+
   const suppliesData = [
     {
       _id: 1,
@@ -113,22 +190,22 @@ export default function CartForm() {
   const totalPriceAfterShippingAndCode = (e) => {
     let result = totalPriceHandler() + 10  // for shipping
     const promoteCode = [
-      ["1CxCpkBMpcbRjXNz", 10], 
-      ["X8XoKzMF8Ld7QRM7" , 20],
+      ["1CxCpkBMpcbRjXNz", 10],
+      ["X8XoKzMF8Ld7QRM7", 20],
       ["Caq4BT90ryL8Y2bN", 30],
     ];
-      promoteCode.forEach((element, idx) => {
-        if (element[0] == e){
-          result -= result * (element[1]/100)
-        }
-      });
-    
-      settotPrice(result)
+    promoteCode.forEach((element, idx) => {
+      if (element[0] == e) {
+        result -= result * (element[1] / 100)
+      }
+    });
+
+    settotPrice(result)
   };
 
-  const totalPriceAfterShipping= ()=>{
+  const totalPriceAfterShipping = () => {
     let val = totPrice
-    if (val == 0 ) { 
+    if (val == 0) {
       val = totalPriceHandler() + 10
     }
     setTotalPrice(val)
@@ -282,7 +359,7 @@ export default function CartForm() {
                 id="promo"
                 placeholder="Enter your code"
                 className="w-full p-2 text-sm"
-                name = 'calcPrice'
+                name='calcPrice'
                 onChange={(e) => totalPriceAfterShippingAndCode(e.target.value)}
               />
             </div>
