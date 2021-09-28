@@ -11,11 +11,14 @@ import { red } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import Nav from "../components/Nav";
 import PetsForm from '../components/PetsForm';
+import PetsFormUpdate from '../components/PetsFormUpdate';
+
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import useResource from '../hooks/useResource'
 import jwt from 'jsonwebtoken';
 import {storage} from '../firebase'
+
 
 
 
@@ -39,6 +42,10 @@ export default function Home() {
     const { resources, loading, createResource, deleteResource , } = useResource(); 
     const[user, setUser]=useState([])
     const [pets, setPets] = useState([])
+    const [updateData, setupdateData] = useState({})
+    const [updateDataCartNum, setupdateDataCartNum] = useState(0)
+
+
     useEffect(() => {
         const url='http://127.0.0.1:8000/api/v1/pet/'
         let acctoken = localStorage.getItem("access");
@@ -79,7 +86,7 @@ export default function Home() {
     };
     const [open, setOpen] = useState(false);
     const handleOpen = () =>{
-        if(true){
+        if(user){
             setOpen(true);
         }
         else{
@@ -87,6 +94,34 @@ export default function Home() {
         }
     } 
     const handleClose = () => setOpen(false);
+
+
+
+    const handleupdate = async(id) =>{
+
+        try {
+            const url = `http://127.0.0.1:8000/api/v1/pet/${id}/`
+            const res=await axios.get(url, config());
+            console.log(id);
+            setupdateDataCartNum(id)
+           setupdateData(res.data)
+           handleOpen()
+        } catch (error) {
+            console.log(error);
+        }
+
+        
+    } 
+
+    function config() {
+        let acctoken = localStorage.getItem("access");
+        return {
+            headers: {
+                'Authorization': 'Bearer ' + acctoken
+            }
+        }
+    }
+ 
     
     return (
         <div className='' >
@@ -148,6 +183,10 @@ export default function Home() {
                         </div>
                         <div>
                             {user&&user.user_id==item.user.id? <Button onClick={()=>deleteResource(item.id)} >Delete</Button>:<p></p>}
+                            {user&&user.user_id==item.user.id? <Button onClick={()=>handleupdate(item.id)} >update</Button>:<p></p>}
+
+                            <PetsFormUpdate open={open} data={updateData}handleClose={handleClose} cardNum={updateDataCartNum} />
+
                         
                         
                             

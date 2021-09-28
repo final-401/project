@@ -43,9 +43,17 @@ export default function useResource() {
         }
     }
 
-    async function updateResource(resource) {
+    async function updateResource(resource,id) {
         // STRETCH
         // Add ability for user to update an existing resource
+        try {
+            const url = apiUrl + id+'/';
+            await axios.put(url,resource, config());
+            mutate(); // mutate causes complete collection to be refetched
+        } catch (error) {
+            handleError(error);
+        }
+        
     }
 
 
@@ -61,6 +69,7 @@ export default function useResource() {
 
     function handleError(error) {
         console.error(error);
+        
         // currently just log out on error
         // but a common error will be short lived token expiring
         // STRETCH: refresh the access token when it has expired
