@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState,useEffect } from 'react';
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
@@ -15,6 +15,10 @@ import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BadgeAvatars from "./UserBudget";
+import jwt from 'jsonwebtoken';
+import { useAuth } from '../contexts/auth'
+import img from "../assest/logo.png"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -102,6 +106,15 @@ ScrollTop.propTypes = {
 };
 
 export default function BackToTop(props) {
+  const[user, setUser]=useState([])
+  const { logout } = useAuth();
+  useEffect(() => {
+    const url='http://127.0.0.1:8000/api/v1/pet/'
+    let acctoken = localStorage.getItem("access");
+    const decodedAccess = jwt.decode(acctoken);
+    console.log(decodedAccess);
+    setUser(decodedAccess)
+}, [])
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -116,7 +129,7 @@ export default function BackToTop(props) {
           {/* add icon here  */}
           <img
             className="hidden w-auto h-8 mr-3 lg:block"
-            src=""
+            src={img}
             alt="Workflow"
           />
           <Typography
@@ -146,7 +159,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/Supplies"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -157,7 +170,7 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/buy"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
@@ -168,14 +181,14 @@ export default function BackToTop(props) {
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/Veterinary"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
               Veterinary
             </Link>
 
-            <Link
+            {/* <Link
               className={classes.navLink}
               variant="button"
               color="text.primary"
@@ -184,40 +197,41 @@ export default function BackToTop(props) {
               underline="none"
             >
               Support
-            </Link>
-
-            <Link
+            </Link> */}
+            {!user&&<Link
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/SignIn"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
               Login
-            </Link>
-
-            <Link
+            </Link>}
+            
+            {!user&&<Link
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/SignUp"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
             >
               SignUp
-            </Link>
-
-            <Link
+            </Link>}
+            
+            {user && <Link
               className={classes.navLink}
               variant="button"
               color="text.primary"
-              href="#"
+              href="/"
               sx={{ my: 1, mx: 1.5 }}
               underline="none"
+              onClick={logout}
             >
               Logout
-            </Link>
+            </Link>}
+            
           </nav>
 
           <IconButton
@@ -230,8 +244,8 @@ export default function BackToTop(props) {
             />
             <h5 className={classes.itemCounter}>0</h5>
           </IconButton>
-
-          <BadgeAvatars />
+          {user&&<BadgeAvatars />}
+          
           <Toolbar id="back-to-top-anchor" />
         </Toolbar>
       </AppBar>

@@ -1,16 +1,20 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
-export const apiUrl = 'http://127.0.0.1:8000/api/v1/pet/';
+export const apiUrl = 'http://127.0.0.1:8000/api/v1/clinic/create/';
 
-export default function useResource() {
+export default function useResourceVet() {
 
     const { tokens, logout } = useAuth()
 
     const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
 
     async function fetchResource(url) {
-       
+        let acctoken = localStorage.getItem("access");
+        if (!acctoken) {
+            return;
+        }
+
         try {
             const response = await axios.get(url);
             console.log('this is respond',response)
@@ -22,9 +26,9 @@ export default function useResource() {
     }
 
     async function createResource(info) {
-        console.log('hellooo from create');
         
         try {
+            console.log('hellooo from create');
             await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
@@ -35,7 +39,7 @@ export default function useResource() {
     async function deleteResource(id) {
 
         try {
-            const url = apiUrl + id+'/';
+            const url = apiUrl + id;
             await axios.delete(url, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
@@ -64,7 +68,7 @@ export default function useResource() {
         // currently just log out on error
         // but a common error will be short lived token expiring
         // STRETCH: refresh the access token when it has expired
-        // logout();
+        logout();
     }
 
     return {

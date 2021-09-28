@@ -13,17 +13,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { assertExpressionStatement } from '@babel/types';
-import axios from 'axios'
-
-
+import axios from 'axios';
+import {storage} from '../firebase';
+import Router from 'next/router';
 
 export default function SignUp() {
 
+  const [imageurl, setImageurl] = useState('');
   const [role,setRole]=useState('')
   const theme = createTheme();
   const handleChange =e =>setRole(e.target.value)
    const handleSubmit = async(event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     console.log({
@@ -34,8 +36,13 @@ export default function SignUp() {
       address: data.get('address'),
       phone: data.get('phone'),
       role: data.get('role'),
-      profile: data.get('profile')
+      profile: data.get('profile'),
+      picture:imageurl
+
     });
+
+    
+
     const userRegistData={
       'email': data.get('email'),
       'password':data.get('password'),
@@ -45,10 +52,32 @@ export default function SignUp() {
       'role': data.get('role'),
       'last_name': data.get('lastname'),
       'address': data.get('address'),
+      'picture':imageurl
+
     }
-    const url='http://127.0.0.1:8000/api/v1/user/create/'
+    const url='http://127.0.0.1:8000/api/v1/user/create/' 
+    const responsedata = await axios.post(url, userRegistData)
+    .then((response) => { console.log(response) })
+    .catch((error) => { alert('please check the email and password')});
+
     
   };
+
+
+
+  const handleInputChange=(e)=>{
+
+    let image =e.target.files[0]
+    let pathReference= storage.ref(`images/${image.name}`)
+
+    const uploadTask =pathReference.put(image).then((url)=>{
+      pathReference.getDownloadURL().then((url) => {
+        console.log(url);
+        setImageurl(url)
+      })
+    });
+    
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -79,6 +108,7 @@ export default function SignUp() {
                       id="firstname"
                       label="First Name"
                       autoFocus
+                      sx={{minHeight: '48px'}}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -167,6 +197,7 @@ export default function SignUp() {
                   <Grid item xs={12}  justifyContent="center">
                   <InputLabel id="profile">Profile</InputLabel>
                     <input 
+                    onChange={handleInputChange}
                     type='file'
                     name="profile"
                     required
@@ -176,8 +207,8 @@ export default function SignUp() {
                     autoFocus
                     ></input>
                   </Grid> 
-                
                 </Grid>
+                  
                 <Button
                   type="submit"
                   fullWidth

@@ -10,7 +10,8 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 600,
     bgcolor: 'background.paper',
-    border: '1px solid #000',
+    border: '2px solid green ',
+    borderRadius:'80px',
     boxShadow: 24,
     p: 4,
 };
@@ -28,13 +29,13 @@ export default function Vetform(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} >
-                    <form class="w-full max-w-lg mx-auto my-5" onSubmit={props.handleSubmit}>
+                    <form class="w-full max-w-lg mx-auto my-5 " onSubmit={props.handleSubmit}>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="clinc-name">
                                     Vet Clinic Name
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="clinc-name" type="text" name="name" />
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="clinc-name" type="text" name="name" />
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="telephone">
@@ -56,7 +57,7 @@ export default function Vetform(props) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="picture">
                                     clinic Picture
                                 </label>
-                                <input  type="file" id="picture"  name="picture"/>
+                                <input onChange={props.handleInputChange}  type="file" id="picture"  name="picture"/>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-2">
@@ -69,13 +70,19 @@ export default function Vetform(props) {
 
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="workhours">
-                                    Working Hours
+                                    Starting Hours
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id = "workhours"type="text" placeholder="10 AM - 10 PM"  name="working_hours"/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id = "workhours"type="time" placeholder="10 AM "  name="start_hours"/>
+                            </div>
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="workhours">
+                                    End Hours
+                                </label>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id = "workhours"type="time" placeholder="10 PM "  name="end_hours"/>
                             </div>
                         </div>
 
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                        <button className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
                             Add Clinc
                         </button>
                     </form>

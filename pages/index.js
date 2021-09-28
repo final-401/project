@@ -43,7 +43,7 @@ export default function Home() {
         <Footer />
       </footer>
 
-      <Supplies />
+      
     </div>
   );
 }
