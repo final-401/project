@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import Container from '@mui/material/Container';
-import Navbar from "../components/Navbar";
+import Nav from "../components/Nav";
 import PetsForm from '../components/PetsForm';
 import Button from '@mui/material/Button';
 import axios from 'axios'
@@ -90,7 +90,7 @@ export default function Home() {
     
     return (
         <div className='' >
-        <Navbar />
+        <Nav />
         
         <div className='m-auto align-middle mt-52 w-72'>
         <Button  onClick={handleOpen}>You Have an offer??  add it!!</Button>

@@ -13,8 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { assertExpressionStatement } from '@babel/types';
-import axios from 'axios'
-import {storage} from '../firebase'
+import axios from 'axios';
+import {storage} from '../firebase';
+import Router from 'next/router';
 
 export default function SignUp() {
 
@@ -55,13 +56,11 @@ export default function SignUp() {
 
     }
     const url='http://127.0.0.1:8000/api/v1/user/create/' 
-    try{
-      const response = await axios.post(url, userRegistData );
-      console.log(response)
-    }
-    catch(error){
-      console.log(error)
-    }
+    const responsedata = await axios.post(url, userRegistData)
+    .then((response) => { console.log(response) })
+    .catch((error) => { alert('please check the email and password')});
+
+    
   };
 
 
@@ -109,6 +108,7 @@ export default function SignUp() {
                       id="firstname"
                       label="First Name"
                       autoFocus
+                      sx={{minHeight: '48px'}}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -207,8 +207,8 @@ export default function SignUp() {
                     autoFocus
                     ></input>
                   </Grid> 
-                
                 </Grid>
+                  
                 <Button
                   type="submit"
                   fullWidth

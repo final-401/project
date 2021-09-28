@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../contexts/auth'
 import { useEffect } from 'react';
+import Router from 'next/router'
 
 
 
@@ -32,6 +33,7 @@ export default function SignIn() {
     let email=data.get('email')
     let password= data.get('password')
     login(email,password)
+    Router.push('/')
     console.log(user)
   };
 

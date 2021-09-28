@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useAuth } from "../contexts/auth";
 import jwt from "jsonwebtoken";
+import Nav from "../components/Nav";
 
 export default function Supplies() {
   const { createResource } = useResourceAddToCart();
@@ -175,6 +176,7 @@ export default function Supplies() {
 
   return (
     <div className="">
+      <Nav/>
       <div className="grid grid-cols-3">
         {supplies.map((item) => {
           return (

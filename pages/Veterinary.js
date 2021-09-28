@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import useResourceVet from '../hooks/useResourceVet'
 import jwt from 'jsonwebtoken';
 import {storage} from '../firebase'
+import Nav from "../components/Nav";
 
 
 export default function Veterinary() {
@@ -90,6 +91,7 @@ export default function Veterinary() {
         
         return (
             <>
+            <Nav/>
             <div className="grid grid-cols-2">
                 {clinic.map((item) => {
                     return (
