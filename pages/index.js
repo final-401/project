@@ -3,17 +3,14 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import HomePage from "../components/HomePage";
 import SignIn from "./SignIn";
-
 import SignUp from "./SignUp";
-import Supplies from "./Supplies"
-
-
+import Supplies from "./Supplies";
 import Nav from "../components/Nav";
 
 export default function Home() {
   return (
     <div className="">
-        <Head>
+      <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -37,7 +34,6 @@ export default function Home() {
       <header className="flex flex-col justify-center my-5 align-center">
         <Nav />
       </header>
-
 
       <main className="mx-auto bg-black xl:container max-width:1280px">
         <HomePage />

@@ -33,7 +33,6 @@ export default function SignIn() {
     let email=data.get('email')
     let password= data.get('password')
     login(email,password)
-    Router.push('/')
     console.log(user)
   };
 
