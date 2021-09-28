@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import useResourceAddCart from "../hooks/useResourceAddCart";
 import jwt from "jsonwebtoken";
 import axios from "axios";
-
+import { PayPalButton } from "react-paypal-button-v2";
+import "animate.css"
+import Swal from 'sweetalert2';
+import { red } from "@mui/material/colors";
 
 
 export default function CartForm() {
@@ -14,6 +17,7 @@ export default function CartForm() {
   const [cartItems, setCartItems] = useState([]);
   const { resources ,deleteResource} = useResourceAddCart();
 
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
     let acctoken = localStorage.getItem("access");
@@ -22,6 +26,22 @@ export default function CartForm() {
     setUser(decodedAccess);
 
   }, []);
+
+
+  useEffect(() => {
+    const addPaypalScript = () => {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=Ac_sMqzKGQP3iZ5jND2UjVG3yuaLzj-0W3K925GEI1P0WPJl1ZLNplWYnH9tA7uMkDJBIh8ysG1OFtzK`;
+      script.async = true;
+
+      script.onload = () => setScriptLoaded(true);
+
+      document.body.appendChild(script);
+    };
+    addPaypalScript();
+  }, []);
+
 
 
 
@@ -71,7 +91,7 @@ export default function CartForm() {
  // Note to Calculate Total and Save it In Ammout 
   useEffect(async ()=>{
     
-    let totalPrice = 10;
+    let totalPrice = 0;
     cartItems.forEach((item) => {
       totalPrice += item.product.quantity * item.product.price;
       
@@ -137,14 +157,25 @@ export default function CartForm() {
 
 
   const handleCheckout =(()=>{
-    var ans = window.prompt("Confirm checkout Enter Yes: ");
-    if ( ans== "yes"){
-      cartItems.map((item)=>{
+    // var ans = window.prompt("Confirm checkout Enter Yes: ");
+    // if ( ans== "yes"){
+    //   cartItems.map((item)=>{
 
-        deleteResource(item.id)
+    //     deleteResource(item.id)
         
-      })
-    }
+    //   })
+    // }
+
+    Swal.fire({
+      title: 'Thank you for your purchase from Us.',
+      text:'Please let us know if we can do anything else for you!',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
 
   })
   
@@ -278,7 +309,7 @@ export default function CartForm() {
             <div className="flex justify-between mt-10 mb-5">
               <span className="text-sm font-semibold uppercase">{`ITEMS -${cartItems.length}`}</span>
               <span className="text-sm font-semibold">
-                {`${amount - 10}$`}
+                {`${amount}$`}
               </span>
             </div>
             <div>
@@ -317,11 +348,26 @@ export default function CartForm() {
             <div className="mt-8 border-t">
               <div className="flex justify-between py-6 text-sm font-semibold uppercase">
                 <span>Total cost</span>
-                <span>{`${amount}$`}</span>
+                {amount? <span>{`${amount+10}$`}</span>:<span>{`${amount}$`}</span>}
               </div>
-              <button onClick={handleCheckout} className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
+
+              {scriptLoaded ? (
+            <PayPalButton
+              amount={amount +10 } 
+              onSuccess={(details, data) => {
+                //save the transaction
+                handleCheckout();
+                console.log(details);
+              }}
+            />
+          ) : (
+            <span>Loading...</span>
+          )}
+
+              {/* <button onClick={handleCheckout} className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
                 Checkout
-              </button>
+              </button> */}
+
             </div>
           </div>
         </div>
@@ -329,3 +375,7 @@ export default function CartForm() {
     </div>
   );
 }
+
+
+
+
