@@ -1,59 +1,134 @@
 import React from "react";
 import Vetform from "../components/Vetform";
+import { useState , useEffect} from 'react'
+import Button from '@mui/material/Button';
+import useResourceVet from '../hooks/useResourceVet'
+import jwt from 'jsonwebtoken';
+import {storage} from '../firebase'
+import Nav from "../components/Nav"
+import Footer from "../components/Footer"
+
+
 export default function Veterinary() {
+    const { resources, loading, createResource, deleteResource , } = useResourceVet(); 
+    const[user, setUser]=useState([])
+    const [clinic, setclinic] = useState([])
+    const [imageurl, setImageurl] = useState('');
 
-    return (
-<>
-        <div>
+    const handleInputChange=(e)=>{
 
-            <body class="flex justify-center items-center bg-blue-lightest space-x-16">
-                <div id="app" class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
-                    <img class="w-1/2 h-full rounded-l-sm" src="https://www.killarneycat.com/wp-content/uploads/sites/19/2017/03/killarney-cat-clinic_indoor-cat-vaccination.jpeg" alt="Room Image" />
-                    <div class="w-full flex flex-col">
-                        <div class="p-4 pb-0 flex-1">
-                            {/* <h3 class="font-light mb-1 text-5xl-grey-darkest">Treaty pets clinic</h3> */}
-                            <span class="text-2xl text-grey-darkest">Treaty pets clinic</span>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Location : Amman</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Working Hours : 10 AM - 10 PM</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">email : treatsclinic@gmail.com</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Telephone : +962798999999</h3>
-                            {/* <span class="text-5xl text-grey-darkest">20.00 JD</span> */}
-                        </div>
-                        {/* <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Book Now
-                            </button>
-
-                        </div> */}
-                    </div>
-                </div>
-
-                <div id="app" class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
-                    <img class="w-1/2 h-full rounded-l-sm" src="https://uploads.metamorphosis.com/wp-content/uploads/sites/2/2020/04/shutterstock_1103924993-2-2.jpg" alt="Room Image" />
-                    <div class="w-full flex flex-col">
-                    <div class="p-4 pb-0 flex-1">
-                            {/* <h3 class="font-light mb-1 text-5xl-grey-darkest">Treaty pets clinic</h3> */}
-                            <span class="text-2xl text-grey-darkest">Treaty pets clinic</span>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Location : Amman</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Working Hours : 10 AM - 10 PM</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">email : treatsclinic@gmail.com</h3>
-                            <h3 class="font-light mb-1 text-5xl-grey-darkest">Telephone : +962798999999</h3>
-                            {/* <span class="text-5xl text-grey-darkest">20.00 JD</span> */}
-                        </div>
-                        {/* <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Book Now
-                            </button>
-                        </div> */}
-                    </div>
-                </div>
-            </body>
-        </div>
+        let image =e.target.files[0]
+        let pathReference= storage.ref(`images/${image.name}`)
+    
+        const uploadTask =pathReference.put(image).then((url)=>{
+          pathReference.getDownloadURL().then((url) => {
+            console.log(url);
+            setImageurl(url)
+          })
+        });
         
-        <div>
-                    
-            <Vetform/>
-        </div>
-            </>
+      }
+
+    
+    useEffect(() => {
+        let acctoken = localStorage.getItem("access");
+        const decodedAccess = jwt.decode(acctoken);
+        console.log(decodedAccess);
+        setUser(decodedAccess)
+    }, [])
+
+    useEffect(() => {
+        if (resources){
+            setclinic( resources )
+        }
+      }, [resources,clinic])
+
+
+        
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            console.log({
+                name: data.get('name'),
+                picture: data.get('picture'),
+                location: data.get('location'),
+                working_hours: data.get('working_hours'),
+                email: data.get('email'),
+                telephone: data.get('telephone'),
+            });
+
+            const newClinic={
+
+                "clinc_name": data.get('name'),
+                "location": data.get('location'),
+                "starthoure": data.get('start_hours'),
+                "endhoure": data.get('end_hours'),
+                "phone": data.get('telephone'),
+                "email": data.get('email'),
+                "picture": imageurl,
+                "user": 1
+
+
+            }
+            createResource(newClinic)
+
+
+        };
+        
+        
+        const [open, setOpen] = React.useState(false);
+        const handleOpen = () => {
+            if (true) {
+                setOpen(true);
+            }
+            else {
+                alert('You should be a doctor')
+                
+            }
+        };
+        const handleClose = () => setOpen(false);
+        
+        
+        
+        return (
+            <>
+            <Nav/>
+
+
+
+            <h1 className="text-2xl text-grey-darkest mt-5 grid justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
+            <h1 className="text-2xl text-grey-darkest mt-5 grid justify-items-center">If your are a doctor and have a clinc you can add it </h1>
+            <div className='m-auto align-middle mt-5 w-72'>
+            <button onClick={handleOpen} className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" >Add Your Clinc In Our Website</button>
+            </div>
+
+            <div className="grid grid-cols-2">
+                {clinic.map((item) => {
+                    return (
+                        
+                        <div id="app" className="flex mx-20 mt-10 bg-white rounded shadow-md w-120 h-60 card text-grey-darkest">
+                            <img className="w-1/2 h-full rounded-l-sm" src={item.picture} alt="Room Image" />
+                            <div className="flex flex-col w-full">
+                                <div className="flex-1 p-4 pb-0">
+                                    <span className="text-2xl text-grey-darkest">{item.clinc_name}</span>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Location : {item.location}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Working hours : {item.starthoure +' - '+ item.endhoure}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Email : {item.email}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Telephone : {item.phone}</h3>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    )
+                })}
+            </div>
+            <div className="mt-4 ml-8">
+                <Vetform handleInputChange={handleInputChange} handleSubmit={handleSubmit} open={open} handleClose={handleClose} />
+            </div>
+
+                <Footer/>
+        </>
     )
 }

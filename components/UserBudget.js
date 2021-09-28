@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { useState,useEffect } from 'react';
+import jwt from 'jsonwebtoken';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -34,6 +36,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function BadgeAvatars() {
+
+  const[user, setUser]=useState([])
+  useEffect(() => {
+    const url='http://127.0.0.1:8000/api/v1/pet/'
+    let acctoken = localStorage.getItem("access");
+    const decodedAccess = jwt.decode(acctoken);
+    console.log(decodedAccess);
+    setUser(decodedAccess)
+}, [])
+
   return (
     // <Stack direction="row" spacing={2}>
       <StyledBadge
@@ -41,7 +53,7 @@ export default function BadgeAvatars() {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
       >
-        <Avatar alt="Saadoun Dhirat" src="https://lh3.googleusercontent.com/a-/AOh14GiU-cgcqjQL8q4JF4gvEs3FCuq-HOf2tsIc5CIt=s100" />
+        <Avatar alt="Saadoun Dhirat" src={user.picture} />
       </StyledBadge>
     // </Stack>
   );
