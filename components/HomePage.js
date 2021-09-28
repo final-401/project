@@ -12,6 +12,8 @@ import articleImg3 from "../Imgs/lizard-2581308_1920.jpg";
 import articleImg4 from "../Imgs/cat-4611189_1920.jpg";
 import img11 from "../Imgs/ali-pazani-YgVNvkm4884-unsplash.jpg";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import AboutUs from "../pages/AboutUs";
+import Link from "@mui/material/Link";
 
 export default function HomePage() {
   return (
@@ -98,10 +100,10 @@ export default function HomePage() {
                 compassion to embrace all living creatures and the whole of
                 nature and its beauty.
               </p>
-              <a href="#" className="block mt-8 text-center text-indigo-700">
+              <Link href="AboutUs/" className="block mt-8 text-center text-indigo-700">
                 More About Us
                 <ArrowRightAltIcon />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

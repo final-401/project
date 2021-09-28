@@ -9,69 +9,62 @@ import Awon from "../AboutImages/Awon.jpeg";
 import Saad from "../AboutImages/Saad.jpeg";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import image from 'next/image';
+import img1 from '../AboutImages/helperImgs/dog5.jpg';
+import img2 from '../AboutImages/helperImgs/dog3.jpg';
+import img3 from '../AboutImages/helperImgs/dog6.jpg';
+// import { dividerClasses } from '@mui/material';
 export default function AboutUs() {
-    // const style = {
-    //     background-image:url("https://images.unsplash.com/photo-1609342475528-dd7d93e8311e"),
-    //     lib="rb-1.2.1",
-    //     auto="format",
-    //     fit="crop",
-    //     w="676",
-    //     q="80",
-    //   };
     return (
         <div>
-            {/* <div class="w-full h-screen bg-center bg-no-repeat bg-cover" style={style}>
-                <div class="w-full h-screen bg-opacity-50 bg-black flex justify-center items-center">
-                    <div class="mx-4 text-center text-white">
-                        <h1 class="font-bold text-6xl mb-4">This is a test</h1>
-                        <h2 class="font-bold text-3xl mb-12">This is a test</h2>
-                        <div>
-                            <a href="" class="bg-blue-500 rounded-md font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-2">
-                                Click here
-                            </a>
-                            <a href="" class="bg-red-500 rounded-md font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-red-600 ml-2">
-                                Or click here
-                            </a>
+            <div>
+                <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center ">
+                    <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-96">
+                        <div class="lg:w-1/2 lg:flex lg:h-full">
+                            <div class="lg:rounded-lg" >
+                                <Image src={img1} alt="mission" class="absolute inset-0 w-full h-full object-cover"/>
+                            </div>
+                        </div>
+                        <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
+                            <h2 class="text-3xl text-indigo-600 font-bold">Our Mission </h2>
+                            <p class="mt-4 text-gray-600">We are on mission to provide our customers and Pet-owners with the best scientific advice, products and nutritions that will help with the best option that support pets to live healthier life.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center ">
+                    <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-72">
+
+                        <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
+                            <h2 class="text-3xl text-indigo-600 font-bold">Our Vision </h2>
+                            <p class="mt-4 text-gray-600">To be the only pet supplies option that provide customers and people with top-notch pet products.</p>
+                        </div>
+                        <div class="lg:w-1/2 lg:flex lg:h-full">
+                            <div class="lg:rounded-lg" >
+                                <Image src={img2} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height:"100%"}}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center ">
+                    <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-72">
+                        <div class="lg:w-1/2 lg:flex lg:h-full">
+                            <div class="lg:rounded-lg" >
+                                <Image src={img3} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height:"100%"}}/>
+                            </div>
+                        </div>
+                        <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
+                            <h2 class="text-3xl text-indigo-600 font-bold">Our Team </h2>
+                            <p class="mt-4 text-gray-600">
+At Pets Care , Our team is fully armed with extensive pet products knowledge and embrace a number of professional values, including good service, respect, credibility, partnership and accountablity.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full h-screen bg-center bg-no-repeat bg-cover" style={{background-image: url('https://images.unsplash.com/photo-1609343007774-dad98a8f8c33?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1225&q=80')}}>
-                <div class="w-full h-screen bg-opacity-50 bg-black flex justify-center items-center relative">
-                    <div class="mx-4 text-center text-white">
-                        <h1 class="font-bold text-6xl mb-4">This is a test</h1>
-                        <h2 class="font-bold text-3xl mb-12">This is a test</h2>
-                    </div>
-                    <div class="absolute bottom-14">
-                        <a href="" class="border-2 border-white rounded-md font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white mr-6">
-                            Click here
-                        </a>
-                    </div>
-                </div>
-            </div> */}
-
             <section class="pt-20 pb-20">
 
                 <div class="flex flex-wrap justify-center text-center mb-24">
                     <div class="w-full lg:w-6/12 px-4">
-                        <h2 class="text-4xl font-semibold  text-blueGray-700">Our story</h2>
-                        <p class="text-lg leading-relaxed m-4 text-blueGray-500">
-                            According to the National Oceanic and Atmospheric
-                            Administration, Ted, Scambos, NSIDClead scentist, puts the
-                            potentially record maximum.
-                        </p>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center text-center mb-24">
-                    <div class="w-full lg:w-6/12 px-4">
-                        <h2 class="text-4xl font-semibold  text-blueGray-700">Here are our heroes</h2>
-                        <p class="text-lg leading-relaxed m-4 text-blueGray-500">
-                            According to the National Oceanic and Atmospheric
-                            Administration, Ted, Scambos, NSIDClead scentist, puts the
-                            potentially record maximum.
-                        </p>
+                        <h2 class="text-4xl  text-indigo-600 font-bold">Here are our heroes</h2>
                     </div>
                 </div>
 
