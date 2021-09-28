@@ -68,7 +68,7 @@ export default function useResourceVet() {
         // currently just log out on error
         // but a common error will be short lived token expiring
         // STRETCH: refresh the access token when it has expired
-        logout();
+        // logout();
     }
 
     return {
