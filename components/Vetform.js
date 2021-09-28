@@ -56,7 +56,7 @@ export default function Vetform(props) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="picture">
                                     clinic Picture
                                 </label>
-                                <input  type="file" id="picture"  name="picture"/>
+                                <input onChange={props.handleInputChange}  type="file" id="picture"  name="picture"/>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-2">

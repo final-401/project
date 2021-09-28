@@ -4,13 +4,30 @@ import { useState , useEffect} from 'react'
 import Button from '@mui/material/Button';
 import useResourceVet from '../hooks/useResourceVet'
 import jwt from 'jsonwebtoken';
+import {storage} from '../firebase'
 
 
 export default function Veterinary() {
     const { resources, loading, createResource, deleteResource , } = useResourceVet(); 
     const[user, setUser]=useState([])
     const [clinic, setclinic] = useState([])
+    const [imageurl, setImageurl] = useState('');
 
+    const handleInputChange=(e)=>{
+
+        let image =e.target.files[0]
+        let pathReference= storage.ref(`images/${image.name}`)
+    
+        const uploadTask =pathReference.put(image).then((url)=>{
+          pathReference.getDownloadURL().then((url) => {
+            console.log(url);
+            setImageurl(url)
+          })
+        });
+        
+      }
+
+    
     useEffect(() => {
         let acctoken = localStorage.getItem("access");
         const decodedAccess = jwt.decode(acctoken);
@@ -46,7 +63,7 @@ export default function Veterinary() {
                 "endhoure": data.get('end_hours'),
                 "phone": data.get('telephone'),
                 "email": data.get('email'),
-                "picture": "https://uploads.metamorphosis.com/wp-content/uploads/sites/2/2020/04/shutterstock_1103924993-2-2.jpg",
+                "picture": imageurl,
                 "user": 1
 
 
@@ -77,15 +94,15 @@ export default function Veterinary() {
                 {clinic.map((item) => {
                     return (
                         
-                        <div id="app" className="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest flex mt-10 mx-10">
+                        <div id="app" className="flex mx-10 mt-10 bg-white rounded shadow-md w-128 h-60 card text-grey-darkest">
                             <img className="w-1/2 h-full rounded-l-sm" src={item.picture} alt="Room Image" />
-                            <div className="w-full flex flex-col">
-                                <div className="p-4 pb-0 flex-1">
+                            <div className="flex flex-col w-full">
+                                <div className="flex-1 p-4 pb-0">
                                     <span className="text-2xl text-grey-darkest">{item.clinc_name}</span>
-                                    <h3 className="font-light mb-1 text-5xl-grey-darkest">Location : {item.location}</h3>
-                                    <h3 className="font-light mb-1 text-5xl-grey-darkest">Working hours : {item.starthoure +' - '+ item.endhoure}</h3>
-                                    <h3 className="font-light mb-1 text-5xl-grey-darkest">Email : {item.email}</h3>
-                                    <h3 className="font-light mb-1 text-5xl-grey-darkest">Telephone : {item.phone}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Location : {item.location}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Working hours : {item.starthoure +' - '+ item.endhoure}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Email : {item.email}</h3>
+                                    <h3 className="mb-1 font-light text-5xl-grey-darkest">Telephone : {item.phone}</h3>
                                 </div>
 
                             </div>
@@ -95,9 +112,9 @@ export default function Veterinary() {
                     )
                 })}
             </div>
-            <div className="ml-8 mt-4">
+            <div className="mt-4 ml-8">
                 <Button onClick={handleOpen} >Add Your Clinc In Our Website</Button>
-                <Vetform handleSubmit={handleSubmit} open={open} handleClose={handleClose} />
+                <Vetform handleInputChange={handleInputChange} handleSubmit={handleSubmit} open={open} handleClose={handleClose} />
             </div>
 
 
