@@ -11,7 +11,7 @@ const style = {
     width: 600,
     bgcolor: 'background.paper',
     border: '2px solid green ',
-    borderRadius:'80px',
+    borderRadius: '80px',
     boxShadow: 24,
     p: 4,
 };
@@ -21,7 +21,7 @@ export default function Vetform(props) {
 
     return (
         <div>
-            
+
             <Modal
                 open={props.open}
                 onClose={props.handleClose}
@@ -58,6 +58,7 @@ export default function Vetform(props) {
                                     clinic Picture
                                 </label>
                                 <input onChange={props.handleInputChange}  type="file" id="picture"  name="picture"/>
+
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-2">
@@ -65,20 +66,20 @@ export default function Vetform(props) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="city">
                                     City
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city" type="text" placeholder="Ex : Amman" name="location"/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="city" type="text" placeholder="Ex : Amman" name="location" />
                             </div>
 
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="workhours">
                                     Starting Hours
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id = "workhours"type="time" placeholder="10 AM "  name="start_hours"/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="workhours" type="time" placeholder="10 AM " name="start_hours" />
                             </div>
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="workhours">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="workhours">
                                     End Hours
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id = "workhours"type="time" placeholder="10 PM "  name="end_hours"/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="workhours" type="time" placeholder="10 PM " name="end_hours" />
                             </div>
                         </div>
 

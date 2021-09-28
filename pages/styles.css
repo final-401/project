@@ -1,3 +1,21 @@
 .MuiInputBase-fullWidth {
     min-height: 48px;
 }
+
+.MuiCardHeader-title{
+    font-size: 1.5rem;
+}
+
+.MuiCardHeader-avatar {
+    font-size: 1.5rem;
+
+}
+
+/* .MuiTypography-paragraph.p{
+    width: 30rem;
+} */
+
+.ffeerraass{
+
+    word-wrap: break-word;
+}
