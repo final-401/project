@@ -6,6 +6,10 @@ import { NavItem } from "react-bootstrap";
 import useResource from '../hooks/useResource'
 import { useState,useEffect } from 'react';
 import jwt from 'jsonwebtoken';
+import {storage} from '../firebase';
+
+
+
 
 
 
@@ -24,10 +28,26 @@ const style = {
     p: 4,
 };
 
-export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
+export default function PetsFormUpdate({open,handleClose,datafrom}) {
     const { resources, loading, createResource, deleteResource ,updateResource} = useResource(); 
 
    
+
+
+    const [imageurl, setImageurl] = useState('');
+    const handleInputChange=(e)=>{
+
+        let image =e.target.files[0]
+        let pathReference= storage.ref(`images/${image.name}`)
+    
+        const uploadTask =pathReference.put(image).then((url)=>{
+          pathReference.getDownloadURL().then((url) => {
+            console.log(url);
+            setImageurl(url)
+          })
+        });
+        
+      }
 
     const[user, setUser]=useState([])
 
@@ -47,10 +67,10 @@ export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
             name_pet:data.get('name'),
             price: data.get('price'),
             description: data.get('description'),
-            // picture: data.get('picture'),
+            picture: imageurl
         }
-        console.log(cardNum);
-        updateResource(obj,cardNum)
+        
+        updateResource(obj,datafrom.id)
     }
     })
 
@@ -70,13 +90,13 @@ export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                                     Pet Type
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="type" name='type' type="text" defaultValue={data.type}/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="type" name='type' type="text" defaultValue={datafrom.type}/>
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                     Price
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" name='price'type="number" defaultValue={data.price}/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" name='price'type="number" defaultValue={datafrom.price}/>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -84,7 +104,7 @@ export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
                                 <label class="block uppercase  tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                     Pet Name
                                 </label>
-                                <input class="appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" name='name' id="name" defaultValue={data.name_pet}/>
+                                <input class="appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" name='name' id="name" defaultValue={datafrom.name_pet}/>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -92,7 +112,7 @@ export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
                                 <label class="block uppercase  tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                     description
                                 </label>
-                                <textarea class="appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" rows='5' type="text" name='description' id="description" defaultValue={data.description}/>
+                                <textarea class="appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" rows='5' type="text" name='description' id="description" defaultValue={datafrom.description}/>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -100,7 +120,7 @@ export default function PetsFormUpdate({open,handleClose,data,cardNum}) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                    Picture
                                 </label>
-                                <input  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" name='picture' id="picture" defaultValue={data.picture}/>
+                                <input onChange={handleInputChange}  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" name='picture' id="picture" defaultValue={''}/>
                             </div>
                         </div>
                        
