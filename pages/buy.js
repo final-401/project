@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
@@ -10,8 +11,6 @@ import { red } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import Nav from "../components/Nav";
 import PetsForm from '../components/PetsForm';
-import PetsFormUpdate from '../components/PetsFormUpdate';
-
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import useResource from '../hooks/useResource'
@@ -24,10 +23,17 @@ import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PetsIcon from '@mui/icons-material/Pets';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
-
-
+import PetsFormUpdate from '../components/PetsFormUpdate';
 
 export default function Home() {
+
+    
+
+
+
+
+
+    
     const [imageurl, setImageurl] = useState('');
     const handleInputChange = (e) => {
 
@@ -44,13 +50,9 @@ export default function Home() {
     }
 
 
-    const { resources, loading, createResource, deleteResource, } = useResource();
+    const { resources, loading, createResource, deleteResource,updateResource } = useResource();
     const [user, setUser] = useState([])
     const [pets, setPets] = useState([])
-    const [updateData, setupdateData] = useState({})
-    const [updateDataCartNum, setupdateDataCartNum] = useState(0)
-
-
     useEffect(() => {
         const url = 'http://127.0.0.1:8000/api/v1/pet/'
         let acctoken = localStorage.getItem("access");
@@ -90,8 +92,6 @@ export default function Home() {
         handleClose()
     };
     const [open, setOpen] = useState(false);
-
-
     const handleOpen = () => {
         if (user) {
             setOpen(true);
@@ -103,33 +103,20 @@ export default function Home() {
     const handleClose = () => setOpen(false);
 
 
-
-    const handleupdate = async(id) =>{
-
-        try {
-            const url = `http://127.0.0.1:8000/api/v1/pet/${id}/`
-            const res=await axios.get(url, config());
-            console.log(id);
-            setupdateDataCartNum(id)
-           setupdateData(res.data)
-           handleOpen()
-        } catch (error) {
-            console.log(error);
-        }
+    const [openUpdate, setOpenUpdate] = useState(false);
+    const handleCloseUpdate = () => setOpenUpdate(false);
+    const [updateData, setupdateData] = useState([])
+    const handleupdate = (item) =>{
+        
+        console.log(item)
+        setupdateData(item)
+        setOpenUpdate(true)
+        console.log(updateData)
 
         
     } 
 
-    function config() {
-        let acctoken = localStorage.getItem("access");
-        return {
-            headers: {
-                'Authorization': 'Bearer ' + acctoken
-            }
-        }
-    }
  
-    
 
     return (
 
@@ -162,14 +149,13 @@ export default function Home() {
             <main className="mx-auto xl:container max-width:1280px">
                 <div className='m-auto mt-12 align-middle w-72'>
                     <Button className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" onClick={handleOpen}>You Have an offer??  add it!!</Button>
-                    
+                    <PetsFormUpdate open={openUpdate}  datafrom={updateData} handleClose={handleCloseUpdate}  />
                     <PetsForm open={open} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit}
                     />
-
                 </div>
                 <div >
 
-                    {pets.map((item) => {
+                    {pets.slice(0).reverse().map((item) => {
                         return (
                             <Container className='relative'>
                                 <Card sx={{ maxWidth: 1000 }} className='p-5 my-10 bg-gray-200 rounded-lg' >
@@ -229,11 +215,10 @@ export default function Home() {
 
                                         </div>
                                         <div>
-                                            {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-48 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-green-100" onClick={() => deleteResource(item.id)} >Delete</Button> : <p></p>}
-                                             {user&&user.user_id==item.user.id? <Button onClick={()=>handleupdate(item.id)} >update</Button>:<p></p>}
+                                            {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-48 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-red-100" onClick={() => deleteResource(item.id)} >Delete</Button> : <p></p>}
+                                            {user&&user.user_id==item.user.id? <Button className="absolute inline-block px-4 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-md bottom-2 right-72 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus:outline-none focus:ring focus:ring-blue-100" onClick={()=>handleupdate(item)} >update</Button>:<p></p>}
 
-                                            <PetsFormUpdate open={open} data={updateData}handleClose={handleClose} cardNum={updateDataCartNum} />
-
+                                            
 
 
                                         </div>
@@ -251,7 +236,6 @@ export default function Home() {
             <footer className="pt-16 pb-12 bg-red-500">
                 <Footer />
             </footer>
-
 
 
 
