@@ -6,6 +6,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Supplies from "./Supplies";
 import Nav from "../components/Nav";
+import NavFinal from "../components/NavFinal";
 
 export default function Home() {
   return (
@@ -31,17 +32,18 @@ export default function Home() {
         />
       </Head>
 
-      <header className="flex flex-col justify-center my-5 align-center">
-        <Nav />
+      <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
+        <NavFinal />
       </header>
 
-      <main className="mx-auto bg-black xl:container max-width:1280px">
+      <main className="mx-auto rounded xl:container max-width:1280px">
         <HomePage />
       </main>
 
-      <footer className="pt-16 pb-12 bg-red-500">
+      <footer className="pt-10 pb-12 rounded">
         <Footer />
       </footer>
+   
 
       
     </div>
