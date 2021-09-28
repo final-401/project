@@ -129,7 +129,7 @@ export default function BackToTop(props) {
           {/* add icon here  */}
           <img
             className="hidden w-auto h-8 mr-3 lg:block"
-            src={img}
+            src="https://i.ibb.co/274j2R5/pet-logo.png"
             alt="Workflow"
           />
           <Typography

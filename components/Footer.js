@@ -112,7 +112,7 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
-                      href="https://github.com/pets-care"
+                      href="AboutUs/"
                     >
                       About Us
                     </a>
@@ -120,7 +120,7 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
-                      href="#"
+                      href="AboutUs/"
                     >
                       Contact Us
                     </a>

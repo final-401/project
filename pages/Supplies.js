@@ -11,9 +11,9 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useAuth } from "../contexts/auth";
 import jwt from "jsonwebtoken";
-
 import Nav from "../components/Nav"
 import Footer from "../components/Footer"
+import Head from "next/head";
 export default function Supplies() {
   const { createResource } = useResourceAddToCart();
   const { resources,createResourceCart } = useResourceAddCart();
@@ -112,21 +112,45 @@ export default function Supplies() {
   };
 
   return (
-    <div className="">
-      <Nav/>
-      <div className="grid grid-cols-3">
+    <div className="supplies">
+        <Head>
+                <title>Create Next App</title>
+                <link rel="icon" href="/favicon.ico" />
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+                />
+            </Head>
+            <header className="flex flex-col justify-center align-center">
+                <Nav />
+            </header>
+            <main className="mx-auto  xl:container max-width:1280px">
+            <h1 className="text-2xl text-grey-darkest text-white mt-5 grid justify-items-center">Here you will find what the pet needs </h1>
+      <div className="grid justify-items-center grid-cols-3">
         {supplies.map((item) => {
           return (
             <Card
               sx={{ maxWidth: 320, maxHeight: 540 }}
-              className="mx-10 my-10 "
+              className="mx-10 my-10 cardsup"
             >
               <CardActionArea>
                 <CardMedia
                   name="picture"
                   component="img"
                   image={item.picture}
-                  style={{ height: "12rem", width: "8rem", marginLeft: "5rem" }}
+                  style={{ height: "12rem", width: "12rem", marginLeft: "4rem" , marginTop:'2rem'}}
                   alt="green iguana"
                 />
                 <CardContent>
@@ -135,13 +159,15 @@ export default function Supplies() {
                     variant="h5"
                     component="div"
                     name="name"
+                    style={{ color:'white'}}
+
                   >
                     {item.product_name}
                   </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    style={{ width: "18.5rem", height: "7rem" }}
+                    style={{ width: "18.5rem", height: "7rem" ,color:'white' }}
                     name="discription"
                   >
                     {item.description}
@@ -150,14 +176,17 @@ export default function Supplies() {
                     variant="body2"
                     color="text.secondary"
                     name="price"
+                    style={{ color:'white'}}
+
                   >
-                    {item.price}
+                    Price : {item.price} JD
                   </Typography>
                   <Stack spacing={1}>
                     <Rating
                       name="half-rating-read"
-                      defaultValue={item.defaultValue}
+                      defaultValue='4.5'
                       precision={item.precision}
+                      readOnly
                       
                     />
                   </Stack>
@@ -175,8 +204,12 @@ export default function Supplies() {
             </Card>
           );
         })}
+
       </div>
-      <Footer/>
+      </main>
+      <footer className="pt-16 pb-12">
+                <Footer />
+            </footer>
     </div>
   );
 }
