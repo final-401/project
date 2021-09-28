@@ -15,10 +15,26 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import useResource from '../hooks/useResource'
 import jwt from 'jsonwebtoken';
-import ownerDocument from '@mui/utils/ownerDocument';
+import {storage} from '../firebase'
+
 
 
 export default function Home() {
+    const [imageurl, setImageurl] = useState('');
+    const handleInputChange=(e)=>{
+
+        let image =e.target.files[0]
+        let pathReference= storage.ref(`images/${image.name}`)
+    
+        const uploadTask =pathReference.put(image).then((url)=>{
+          pathReference.getDownloadURL().then((url) => {
+            console.log(url);
+            setImageurl(url)
+          })
+        });
+        
+      }
+
     
     const { resources, loading, createResource, deleteResource , } = useResource(); 
     const[user, setUser]=useState([])
@@ -45,13 +61,13 @@ export default function Home() {
             type: data.get('type'),
             price: data.get('price'),
             description: data.get('description'),
-            picture: data.get('picture'),
+            picture: imageurl,
             
         });
         const newPet={
             
             'type':data.get('type'),
-            'picture':'https://vetstreet.brightspotcdn.com/dims4/default/f5365df/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2Ff3%2F39%2F611aa7c744c3b01b1a7f663d6cea%2FMunchkin-AP-YL20CX-645sm3614.jpg',
+            'picture':imageurl,
             'description':data.get('description'),
             'price':data.get('price'),
             'name_pet':data.get('name'),
@@ -79,7 +95,7 @@ export default function Home() {
         <div className='m-auto align-middle mt-52 w-72'>
         <Button  onClick={handleOpen}>You Have an offer??  add it!!</Button>
         {user?<p>{user.username}</p>:<p>noooooooooo</p>}
-            <PetsForm open={open} handleClose={handleClose} handleSubmit={handleSubmit}
+            <PetsForm open={open} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit}
             />
         </div>
         <div >
