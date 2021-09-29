@@ -39,7 +39,7 @@ export default function Home() {
         <HomePage />
       </main>
 
-      <footer className="pt-10 pb-12 rounded">
+      <footer className="pt-10 ">
         <Footer />
       </footer>
    
