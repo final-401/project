@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
@@ -24,6 +23,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import PetsFormUpdate from '../components/PetsFormUpdate';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 export default function Home() {
 
@@ -195,7 +195,7 @@ export default function Home() {
                                                         <MonetizationOnIcon />
                                                         {item.price == 0 ? <p> &nbsp;for adoption </p> : <p>   Price: {item.price}</p>}
                                                     </div>
-
+                                                    {/* <PhoneIcon/> Phone number: {item.user.phone} */}
                                                 </Typography>
                                             </CardContent>
 

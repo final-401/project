@@ -143,9 +143,9 @@ export default function NavFinal() {
         <div className="flex items-center justify-center -mt-20">
           <div className="py-3 mx-auto mt-3 overflow-y-auto font-medium whitespace-no-wrap scroll-hidden">
             <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/">Home</a>
-            <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/Supplies">Supplies</a>
-            <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/buy">Buy</a>
+            <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/buy">Pets</a>
             <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/Veterinary">Clinic</a>
+            <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/Supplies">Supplies</a>
             <a className="mx-4 leading-5 text-gray-700 text-md hover:text-blue-600 hover:underline md:my-0" href="/AboutUs">About Us</a>
           </div>
         </div>

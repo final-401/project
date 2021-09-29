@@ -80,7 +80,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className='mancolbg'>
+    <div  >
       <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

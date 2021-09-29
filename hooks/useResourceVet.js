@@ -37,9 +37,9 @@ export default function useResourceVet() {
     }
 
     async function deleteResource(id) {
-
+        const delUrl = 'https://pets-api-v1.herokuapp.com/api/v1/clinic/'
         try {
-            const url = apiUrl + id;
+            const url = delUrl + id+'/';
             await axios.delete(url, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {

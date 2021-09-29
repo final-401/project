@@ -67,11 +67,12 @@ export default function Veterinary() {
             "phone": data.get('telephone'),
             "email": data.get('email'),
             "picture": imageurl,
-            "user": 1
+            "user": user.user_id
 
 
         }
         createResource(newClinic)
+        handleClose()
 
 
     };
@@ -135,14 +136,17 @@ export default function Veterinary() {
                             <div id="app" className="flex mx-20 mt-10 bg-gray-200 rounded shadow-md w-120 h-60 card text-grey-darkest cardvet">
                                 <img className="w-1/2 h-full rounded-l-sm" src={item.picture} alt="Room Image" />
                                 <div className="flex flex-col w-full">
-                                    <div className="flex-1 p-4 pb-0">
+                                    <div className="relative flex-1 p-4 pb-0">
                                         <span className="text-3xl ">{item.clinc_name.toUpperCase()}</span>
                                         <h3 className="mb-1 font-light ">Location : {item.location}</h3>
                                         <h3 className="mb-1 font-light ">Working hours : {item.starthoure + ' - ' + item.endhoure}</h3>
                                         <h3 className="mb-1 font-light ">Email : {item.email}</h3>
                                         <h3 className="mb-1 font-light ">Telephone : {item.phone}</h3>
+                                       
+                                        {user&&(user.user_id==item.user)? <button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-2 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-red-100" onClick={()=>   deleteResource(item.id)}>delete</button>:<p></p>}
+                                        
                                     </div>
-
+                                   
                                 </div>
                             </div>
 

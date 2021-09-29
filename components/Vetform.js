@@ -84,7 +84,7 @@ export default function Vetform(props) {
                         </div>
                         <div className="grid justify-items-center mt-11">
 
-                            <button onClick={props.handleClose} className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
+                            <button  type='submit' className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
                                 Add Clinc
                             </button>
                         </div>
