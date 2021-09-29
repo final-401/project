@@ -279,7 +279,7 @@ export default function CartForm() {
               <div class="sm:grid grid-cols-4 gap-5 mx-auto px-16">
                 <div class="col-start-1 col-end-3 my-2">
                   <a href="/Supplies">
-                    <div class="h-full p-6 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md">
+                    <div class="h-full p-6 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md -ml-16 mt-14">
                       <h3 class=" mb-3 font-semibold inline-flex">
                         <svg
                           class="mr-2"

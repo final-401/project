@@ -37,7 +37,7 @@ export default function cart() {
         <CartForm />
       </main>
 
-      <footer className="pt-16 pb-12 bg-red-500">
+      <footer className="pt-16 pb-12">
         <Footer />
       </footer>
     </div>

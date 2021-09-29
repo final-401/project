@@ -14,11 +14,10 @@ import img2 from '../AboutImages/helperImgs/dog3.jpg';
 import img3 from '../AboutImages/helperImgs/dog6.jpg';
 import Nav from "../components/Nav";
 
-// import { dividerClasses } from '@mui/material';
 export default function AboutUs() {
     return (
         <div>
-           <header className="h-64 mx-auto mb-20 rounded xl:container max-h-16">
+            <header className="h-64 mx-auto mb-20 rounded xl:container max-h-16">
                 <Nav />
             </header>
             <div>
@@ -26,7 +25,7 @@ export default function AboutUs() {
                     <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-96">
                         <div class="lg:w-1/2 lg:flex lg:h-full">
                             <div class="lg:rounded-lg" >
-                                <Image src={img1} alt="mission" class="absolute inset-0 w-full h-full object-cover"/>
+                                <Image src={img1} alt="mission" class="absolute inset-0 w-full h-full object-cover" />
                             </div>
                         </div>
                         <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
@@ -44,7 +43,7 @@ export default function AboutUs() {
                         </div>
                         <div class="lg:w-1/2 lg:flex lg:h-full">
                             <div class="lg:rounded-lg" >
-                                <Image src={img2} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height:"100%"}}/>
+                                <Image src={img2} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height: "100%" }} />
                             </div>
                         </div>
                     </div>
@@ -53,13 +52,13 @@ export default function AboutUs() {
                     <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-72">
                         <div class="lg:w-1/2 lg:flex lg:h-full">
                             <div class="lg:rounded-lg" >
-                                <Image src={img3} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height:"100%"}}/>
+                                <Image src={img3} alt="mission" class="absolute inset-0 w-full h-full object-cover" style={{ height: "100%" }} />
                             </div>
                         </div>
                         <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
                             <h2 class="text-3xl text-indigo-600 font-bold">Our Team </h2>
                             <p class="mt-4 text-gray-600">
-At Pets Care , Our team is fully armed with extensive pet products knowledge and embrace a number of professional values, including good service, respect, credibility, partnership and accountablity.</p>
+                                At Pets Care , Our team is fully armed with extensive pet products knowledge and embrace a number of professional values, including good service, respect, credibility, partnership and accountablity.</p>
                         </div>
                     </div>
                 </div>

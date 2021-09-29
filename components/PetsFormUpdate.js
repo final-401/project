@@ -11,11 +11,6 @@ import {storage} from '../firebase';
 
 
 
-
-
-
-
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -23,7 +18,8 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 600,
     bgcolor: 'background.paper',
-    border: '1px solid #000',
+    border: '2px solid green ',
+    borderRadius:'10px',
     boxShadow: 24,
     p: 4,
 };
@@ -90,7 +86,7 @@ export default function PetsFormUpdate({open,handleClose,datafrom}) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                                     Pet Type
                                 </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="type" name='type' type="text" defaultValue={datafrom.type}/>
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="type" name='type' type="text" defaultValue={datafrom.type}/>
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
@@ -120,16 +116,15 @@ export default function PetsFormUpdate({open,handleClose,datafrom}) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                    Picture
                                 </label>
-                                <input onChange={handleInputChange}  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" name='picture' id="picture" defaultValue={''}/>
+                                <input onChange={handleInputChange}  type="file" name='picture' id="picture" defaultValue={''}/>
                             </div>
                         </div>
-                       
-                            
-                        
-
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit">
-                            Add Pet
+                       <div className="grid justify-items-center mt-7">
+                           
+                        <button onClick={handleClose} className=" inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
+                            Update
                         </button>
+                       </div>
                     </form>
                 </Box>
             </Modal>
