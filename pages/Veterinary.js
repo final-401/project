@@ -156,7 +156,7 @@ export default function Veterinary() {
 
             </main>
 
-            <footer className="pt-16 pb-12">
+            <footer className="pt-16 ">
                 <Footer />
             </footer>
 

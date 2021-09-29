@@ -157,7 +157,7 @@ export default function Home() {
 
                     {pets.slice(0).reverse().map((item) => {
                         return (
-                            <Container className='relative'>
+                            <Container className='relative' >
                                 <Card sx={{ maxWidth: 1000 }} className='p-5 my-10 bg-gray-200 rounded-lg' >
                                     <div>
                                         <CardHeader
@@ -233,7 +233,7 @@ export default function Home() {
                 </div>
             </main>
 
-            <footer className="pt-16 pb-12 bg-red-500">
+            <footer className="pt-16 ">
                 <Footer />
             </footer>
 
