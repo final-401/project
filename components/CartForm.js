@@ -2,18 +2,22 @@ import React, { useState, useEffect } from "react";
 import useResourceAddCart from "../hooks/useResourceAddCart";
 import jwt from "jsonwebtoken";
 import axios from "axios";
-
+import { PayPalButton } from "react-paypal-button-v2";
+import "animate.css"
+import Swal from 'sweetalert2';
+import { red } from "@mui/material/colors";
 
 
 export default function CartForm() {
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totPrice, settotPrice] = useState(0);
+
+  const[amount,setAmount]=useState(0);
+  const [afterDiscount,setafterDiscount]=useState(0)
   const [user, setUser] = useState([]);
   const [cartNum, setcartNum] = useState(0);
-  const [cartData ,setcartData]=useState([])
-
+  const [cartItems, setCartItems] = useState([]);
   const { resources ,deleteResource} = useResourceAddCart();
 
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
     let acctoken = localStorage.getItem("access");
@@ -22,6 +26,23 @@ export default function CartForm() {
     setUser(decodedAccess);
 
   }, []);
+
+
+  useEffect(() => {
+    const addPaypalScript = () => {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=Ac_sMqzKGQP3iZ5jND2UjVG3yuaLzj-0W3K925GEI1P0WPJl1ZLNplWYnH9tA7uMkDJBIh8ysG1OFtzK`;
+      script.async = true;
+
+      script.onload = () => setScriptLoaded(true);
+
+      document.body.appendChild(script);
+    };
+    addPaypalScript();
+  }, []);
+
+
 
 
   useEffect(() => {
@@ -48,11 +69,12 @@ export default function CartForm() {
   useEffect(async () => {
     if (user) {
       if (cartNum) {
-        const url = `http://127.0.0.1:8000/api/v1/cart/${cartNum}/`
+        const url = `https://pets-api-v1.herokuapp.com/api/v1/cart/${cartNum}/`
         try {
           const response = await axios.get(url);
+
           console.log('this is respond', response.data.order)
-          setcartData(response.data.order)
+          setCartItems(response.data.order)
 
         } catch (error) {
           console.log(error);
@@ -64,149 +86,98 @@ export default function CartForm() {
 
   }, [resources,cartNum])
 
+
+
+ // Note to Calculate Total and Save it In Ammout 
+  useEffect(async ()=>{
+    
+    let totalPrice = 0;
+    cartItems.forEach((item) => {
+      totalPrice += item.product.quantity * item.product.price;
+      
+    });
+    setAmount(totalPrice)
+    setafterDiscount(totalPrice)
+
+    console.log(totalPrice);
+  },[cartItems,resources])
+
+
+
+
+
+
   
 
-  const suppliesData = [
-    {
-      _id: 1,
-      name: "Royal Canin ® Maxi Adult 10KG",
-      picture:
-        "https://www.petbarn.com.au/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/2/122853_royal_canin_maxi_lightweightcare_1_2.jpg",
-      discription:
-        "Maintans Ideal Weight Helps maintain neutered adult dogs at ideal weight through a moderate calorie intake Suitable For: Neutered adult dogs Meat and animal derivatives.",
-      price: "150",
-      defaultValue: 4.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-    {
-      _id: 2,
-      name: "Bewi Cat® Salmon (6/pack)",
-      picture:
-        "https://cdn.shopify.com/s/files/1/0566/1940/1388/products/88.jpg?v=1620221469",
-      discription:
-        "BEWI Cat® meatinis Wild game; Moist meals has the advantage that the cat also takes into water with the food. For this reason prefer many cats one mixture of dry and moist food.",
-      price: 50,
-      defaultValue: 3.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-    {
-      _id: 15,
-      name: "Royal Canin ® Urinary Care 4kg",
-      picture:
-        "https://cdn.shopify.com/s/files/1/0480/8251/8177/products/royal-canin-urinary-care-main_700x700.png?v=1628107118",
-      discription:
-        "Hunger regulation After neutering, certain cats are less able to regulate their food intake. APPETITE CONTROL STERILISED contains a high level* of specific fibres which help to satisfy the appetite of cats.",
-      price: 75,
-      defaultValue: 3.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-    {
-      _id: 10,
-      name: "Catit Vesper Rocket",
-      picture:
-        "https://www.petsjo.com/content/images/thumbs/0005102_catit-vesper-rocket_557.jpeg",
-      discription:
-        "Cute cat toy space rocket ship available in blue and grey,made of high quality fabric and mesh sides ensure optimal airflow,includes soft padded cushion cat bed.",
-      price: 75,
-      defaultValue: 5.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-    {
-      _id: 3,
-      name: "Treat Ball Dog",
-      picture:
-        "https://m.media-amazon.com/images/I/71fhMmONcLL._AC_SL1500_.jpg",
-      discription:
-        "Your furry pal gets smarter as they play with this interactive dog toy & dog puzzle dog ball, learning how to roll the dog ball to get healthy dog treats or kibble to fall out",
-      price: 75,
-      defaultValue: 2.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-    {
-      _id: 5,
-      name: "Kong ® Air Dog",
-      picture:
-        "https://assets.petco.com/petco/image/upload/c_pad,dpr_1.0,f_auto,q_auto,h_636,w_636/c_pad,h_636,w_636/419796-center-3",
-      discription:
-        "The KONG Tails are great for indoor and outdoor interactive play. Each toy is made with our KONG Classic rubber and has a squeaker to entice and entertain your dog",
-      price: 75,
-      defaultValue: 3.5,
-      precision: 0.5,
-      quantity: 1,
-    },
-  ];
-
-  const [cartItems, setCartItems] = useState(suppliesData);
 
   const incrementItem = (index) => {
     const newCartItems = [...cartItems];
-    newCartItems[index].quantity++;
+    newCartItems[index].product.quantity++;
     setCartItems(newCartItems);
   };
 
   const decrementItem = (index) => {
     const newCartItems = [...cartItems];
-    if (newCartItems[index].quantity <= 1) {
-      newCartItems[index].quantity = 1;
+    if (newCartItems[index].product.quantity <= 1) {
+      newCartItems[index].product.quantity = 1;
       setCartItems(newCartItems);
     } else {
-      newCartItems[index].quantity--;
+      newCartItems[index].product.quantity--;
       setCartItems(newCartItems);
     }
   };
 
-  const itemsCount = (e) => {
-    const newValue = e.target.value;
-    suppliesData[id].quantity = newValue;
-  };
 
-  const totalPriceHandler = () => {
-    let totalPrice = 0;
-    cartItems.forEach((item) => {
-      totalPrice += item.quantity * item.price;
-    });
-    return totalPrice;
-  };
-
+  var flag = false
   const totalPriceAfterShippingAndCode = (e) => {
-    let result = totalPriceHandler() + 10  // for shipping
+
+    let result = amount   
+    
     const promoteCode = [
       ["1CxCpkBMpcbRjXNz", 10],
       ["X8XoKzMF8Ld7QRM7", 20],
       ["Caq4BT90ryL8Y2bN", 30],
+      ['Abdulha',95]
+
+
     ];
+
     promoteCode.forEach((element, idx) => {
       if (element[0] == e) {
         result -= result * (element[1] / 100)
+        flag=true
       }
     });
 
-    settotPrice(result)
+    setafterDiscount(result)
   };
 
-  const totalPriceAfterShipping = () => {
-    let val = totPrice
-    if (val == 0) {
-      val = totalPriceHandler() + 10
-    }
-    setTotalPrice(val)
-  }
+
+ const applyDiscount=()=>{
+   console.log(afterDiscount);
+   setAmount(afterDiscount)
+ }
 
 
   const handleCheckout =(()=>{
-    var ans = window.prompt("Confirm checkout Enter Yes: ");
-    if ( ans== "yes"){
-      cartData.map((item)=>{
+    
+    cartItems.map((item)=>{
 
-        deleteResource(item.id)
-        
-      })
-    }
+      deleteResource(item.id)
+      
+    })
+    
+
+    Swal.fire({
+      title: 'Thank you for your purchase from Us.',
+      text:'Please let us know if we can do anything else for you!',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
 
   })
   
@@ -223,7 +194,7 @@ export default function CartForm() {
           <div className="w-3/4 px-10 py-10 bg-white rounded">
             <div className="flex justify-between pb-8 border-b">
               <h1 className="text-2xl font-semibold">Shopping Cart</h1>
-              <h2 className="text-2xl font-semibold">{`${suppliesData.length} - ITEMS`}</h2>
+              <h2 className="text-2xl font-semibold">{`${cartItems.length} - ITEMS`}</h2>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="w-2/5 text-xs font-semibold text-gray-600 uppercase">
@@ -240,7 +211,7 @@ export default function CartForm() {
               </h3>
             </div>
             {/* Products */}
-            {cartData?.map((supply, index) => (
+            {cartItems?.map((supply, index) => (
               <div
                 key={supply._id}
                 className="flex items-center px-6 py-5 -mx-8 hover:bg-gray-100"
@@ -279,7 +250,7 @@ export default function CartForm() {
                   <input
                     className="w-12 mx-4 border te xt-center"
                     type="text"
-                    value={supply.product.quantity}
+                    Value={supply.product.quantity}
                   />
 
                   <svg
@@ -338,9 +309,9 @@ export default function CartForm() {
               Order Summary
             </h1>
             <div className="flex justify-between mt-10 mb-5">
-              <span className="text-sm font-semibold uppercase">{`ITEMS -${cartData.length}`}</span>
+              <span className="text-sm font-semibold uppercase">{`ITEMS -${cartItems.length}`}</span>
               <span className="text-sm font-semibold">
-                {`${totalPriceHandler()}$`}
+                {`${amount}$`}
               </span>
             </div>
             <div>
@@ -371,7 +342,7 @@ export default function CartForm() {
 
             <button
               className="px-5 py-2 text-sm text-white uppercase bg-red-700 rounded hover:bg-red-500"
-              onClick={totalPriceAfterShipping}
+              onClick={applyDiscount}
             >
               Apply
             </button>
@@ -379,11 +350,26 @@ export default function CartForm() {
             <div className="mt-8 border-t">
               <div className="flex justify-between py-6 text-sm font-semibold uppercase">
                 <span>Total cost</span>
-                <span>{`${totalPrice}$`}</span>
+                {amount? <span>{`${amount+10}$`}</span>:<span>{`${amount}$`}</span>}
               </div>
-              <button onClick={handleCheckout} className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
+
+              {scriptLoaded ? (
+            <PayPalButton
+              amount={amount +10 } 
+              onSuccess={(details, data) => {
+                //save the transaction
+                handleCheckout();
+                console.log(details);
+              }}
+            />
+          ) : (
+            <span>Loading...</span>
+          )}
+
+              {/* <button onClick={handleCheckout} className="w-full py-3 text-sm font-semibold text-white uppercase bg-red-700 rounded hover:bg-red-500">
                 Checkout
-              </button>
+              </button> */}
+
             </div>
           </div>
         </div>
@@ -391,3 +377,7 @@ export default function CartForm() {
     </div>
   );
 }
+
+
+
+

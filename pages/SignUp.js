@@ -55,9 +55,9 @@ export default function SignUp() {
       'picture':imageurl
 
     }
-    const url='http://127.0.0.1:8000/api/v1/user/create/' 
+    const url='https://pets-api-v1.herokuapp.com/api/v1/user/create/' 
     const responsedata = await axios.post(url, userRegistData)
-    .then((response) => { console.log(response) })
+    .then((response) => { Router.push('/SignIn') })
     .catch((error) => { alert('please check the email and password')});
 
     
