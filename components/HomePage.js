@@ -24,7 +24,7 @@ export default function HomePage() {
 
         <div className="mt-4 md:mt-24">
           <h2 className="text-2xl font-extrabold text-center text-gray-900 md:mb-20 ">
-            How To Order from Our Website
+            Services that we Provide
           </h2>
           <div className="flex flex-wrap ">
             <div className="w-full px-4 pt-6 text-center lg:pt-12 md:w-4/12">
@@ -57,7 +57,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="w-full px-4 pt-6 text-center md:w-4/12">
+            <div className="w-full px-4 pt-6 text-center lg:pt-12 md:w-4/12">
               <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
                 <div className="flex-auto px-4 py-5">
                   <div className="inline-flex items-center justify-center w-12 h-12 p-3 mb-5 text-center text-white bg-red-400 rounded-full shadow-lg ">
@@ -114,7 +114,7 @@ export default function HomePage() {
           <section className="px-4 mx-auto mt-12 mb-12 max-w-7xl sm:px-6 lg:px-4">
             <article>
               <h2 className="text-2xl font-extrabold text-center text-gray-900">
-                Today's Top Articles
+                Articles
               </h2>
               <section className="grid mt-6 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
                 <article className="relative overflow-hidden duration-200 transform bg-white rounded-lg shadow-lg group hover:shadow-2xl">
