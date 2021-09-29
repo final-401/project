@@ -193,13 +193,14 @@ export default function Supplies() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button
+                  {user&&<Button
                     onClick={() => addToCart(item)}
                     size="small"
                     color="primary"
                   >
                     Add To Cart
-                  </Button>
+                  </Button>}
+                  
                 </CardActions>
               </Card>
             );

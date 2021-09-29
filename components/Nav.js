@@ -114,15 +114,16 @@ export default function NavFinal() {
 
 
                 {/*shopping cart */}
-                <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white bg-gray-500 rounded hover:bg-blue-600 md:mx-2 md:w-auto" href="/cart">
+                {user&&<a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white bg-gray-500 rounded hover:bg-blue-600 md:mx-2 md:w-auto" href="/cart">
                   <i className="fas fa-shopping-cart"></i>
                   <span className="ml-1">Cart</span>
-                </a>
+                </a>}
+                
 
 
-
+            
                 {/*user avatar*/}
-                <div className="relative w-16 h-12 -mb-2">
+                {user&&<div className="relative w-16 h-12 -mb-2">
                   <div className="table w-full h-full overflow-hidden text-center rounded-full shadow-inner cursor-pointer group bg-purple">
                     {user&&<StyledBadge
                       overlap="circular"
@@ -133,7 +134,8 @@ export default function NavFinal() {
                     </StyledBadge>}
                   </div>
                 </div>
-
+}
+                
               </div>
             </div>
           </div>
