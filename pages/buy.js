@@ -146,14 +146,14 @@ export default function Home() {
                 <Nav />
             </header>
 
-            <main className="mx-auto xl:container max-width:1280px">
+            <main className="mx-auto xl:container max-width:1880px ">
                 <div className='m-auto mt-12 align-middle w-72'>
                     <Button className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" onClick={handleOpen}>You Have an offer??  add it!!</Button>
                     <PetsFormUpdate open={openUpdate} datafrom={updateData} handleClose={handleCloseUpdate} />
                     <PetsForm open={open} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit}
                     />
                 </div>
-                <div >
+                <div>
 
                     {pets.slice(0).reverse().map((item) => {
                         return (
@@ -206,7 +206,7 @@ export default function Home() {
 
                                                 </Typography>
                                                 <Typography className='ffeerraass' style={{ width: '25rem', maxHeight: '50rem' }} paragraph={true} nowrap={false} >
-                                                    {item.description}
+                                                    {item.description} <br/>
 
                                                 </Typography>
 

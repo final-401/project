@@ -13,7 +13,7 @@ const style = {
     width: 600,
     bgcolor: 'background.paper',
     border: '2px solid green ',
-    borderRadius:'80px',
+    borderRadius:'10px',
     boxShadow: 24,
     p: 4,
 };
@@ -68,16 +68,17 @@ export default function Petsform({open,handleClose,handleSubmit,handleInputChang
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                    Picture
                                 </label>
-                                <input onChange={handleInputChange} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" name='picture' id="picture" />
+                                <input onChange={handleInputChange}  type="file" name='picture' id="picture" />
                             </div>
                         </div>
                        
                             
                         
-
+                        <div className="grid justify-items-center mt-10">
                         <button className="px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
                             Add Pet
                         </button>
+                            </div>
                     </form>
                 </Box>
             </Modal>

@@ -11,7 +11,7 @@ const style = {
     width: 600,
     bgcolor: 'background.paper',
     border: '2px solid green ',
-    borderRadius: '80px',
+    borderRadius: '10px',
     boxShadow: 24,
     p: 4,
 };
@@ -57,7 +57,7 @@ export default function Vetform(props) {
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="picture">
                                     clinic Picture
                                 </label>
-                                <input onChange={props.handleInputChange}  type="file" id="picture"  name="picture"/>
+                                <input onChange={props.handleInputChange} type="file" id="picture" name="picture" />
 
                             </div>
                         </div>
@@ -82,10 +82,12 @@ export default function Vetform(props) {
                                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="workhours" type="time" placeholder="10 PM " name="end_hours" />
                             </div>
                         </div>
+                        <div className="grid justify-items-center mt-11">
 
-                        <button className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
-                            Add Clinc
-                        </button>
+                            <button onClick={props.handleClose} className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
+                                Add Clinc
+                            </button>
+                        </div>
                     </form>
                 </Box>
             </Modal>
