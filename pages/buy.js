@@ -122,8 +122,8 @@ export default function Home() {
 
         <div className='mancolbg' >
             <Head>
-                <title>Pets Care</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>pets</title>
+                <link rel="icon" href="/logo.ico" />
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -216,8 +216,8 @@ export default function Home() {
 
                                         </div>
                                         <div>
-                                            {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-48 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-red-100" onClick={() => deleteResource(item.id)} >Delete</Button> : <p></p>}
-                                            {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-md bottom-2 right-72 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus:outline-none focus:ring focus:ring-blue-100" onClick={() => handleupdate(item)} >update</Button> : <p></p>}
+                                            {user && user.user_id == item.user.id ? <button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-48 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-red-100" onClick={() => deleteResource(item.id)} >Delete</button> : <p></p>}
+                                            {user && user.user_id == item.user.id ? <button className="absolute inline-block px-4 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-md bottom-2 right-72 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus:outline-none focus:ring focus:ring-blue-100" onClick={() => handleupdate(item)} >update</button> : <p></p>}
 
 
 
