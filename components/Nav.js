@@ -53,7 +53,7 @@ export default function NavFinal() {
 
   return (
 
-    <div className="fixed top-0 z-10 w-full mx-auto rounded xl:container max-width:1280px bg-gradient-to-tr from-green-400 to-green-800">
+    <div className="fixed top-0 z-10 w-full mx-auto rounded xl:container max-width:1280px navbarcol">
       <nav className="container px-6 py-3 mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
           <div className="flex items-center justify-between">

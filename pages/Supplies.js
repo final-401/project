@@ -112,7 +112,7 @@ export default function Supplies() {
   };
 
   return (
-    <div className="supplies">
+    <div className="supplies mancolbg">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -136,14 +136,14 @@ export default function Supplies() {
       <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
         <Nav />
       </header>
-      <main className="mx-auto xl:container max-width:1280px">
+      <main className="mx-auto xl:container max-width:1280px mancolbg">
         <h1 className="grid mt-5 text-2xl text-white text-grey-darkest justify-items-center">Here you will find what the pet needs </h1>
         <div className="grid grid-cols-3 justify-items-center">
           {supplies.map((item) => {
             return (
               <Card
                 sx={{ maxWidth: 320, maxHeight: 540 }}
-                className="mx-10 my-10 cardsup"
+                className="mx-10 my-10 bg-gray-200 cardsup"
               >
                 <CardActionArea>
                   <CardMedia
@@ -159,7 +159,7 @@ export default function Supplies() {
                       variant="h5"
                       component="div"
                       name="name"
-                      style={{ color: 'white' }}
+                      
 
                     >
                       {item.product_name}
@@ -167,7 +167,7 @@ export default function Supplies() {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      style={{ width: "18.5rem", height: "7rem", color: 'white' }}
+                      style={{ width: "18.5rem", height: "7rem",  }}
                       name="discription"
                     >
                       {item.description}
@@ -176,7 +176,7 @@ export default function Supplies() {
                       variant="body2"
                       color="text.secondary"
                       name="price"
-                      style={{ color: 'white' }}
+                      
 
                     >
                       Price : {item.price} JD

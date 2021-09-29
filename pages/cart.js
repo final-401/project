@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 
 export default function cart() {
   return (
-    <div className="">
+    <div className="mancolbg">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -33,7 +33,7 @@ export default function cart() {
       </header>
 
       {/* cart Form */}
-      <main className="mx-auto bg-black xl:container max-width:1280px">
+      <main className="mx-auto bg-black xl:container max-width:1280px mancolbg">
         <CartForm />
       </main>
 

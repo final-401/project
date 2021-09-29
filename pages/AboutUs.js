@@ -16,11 +16,11 @@ import Nav from "../components/Nav";
 
 export default function AboutUs() {
     return (
-        <div>
+        <div className='mancolbg'>
             <header className="h-64 mx-auto mb-20 rounded xl:container max-h-16">
                 <Nav />
             </header>
-            <div>
+            <div className='mancolbg'>
                 <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center ">
                     <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-96">
                         <div class="lg:w-1/2 lg:flex lg:h-full">
@@ -68,7 +68,7 @@ export default function AboutUs() {
 
                 <div class="flex flex-wrap justify-center text-center mb-24">
                     <div class="w-full lg:w-6/12 px-4">
-                        <h2 class="text-4xl  text-indigo-600 font-bold">Here are our heroes</h2>
+                        <h2 class="text-4xl  text-white font-bold">Here are our heroes</h2>
                     </div>
                 </div>
 
@@ -78,8 +78,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Feras} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center">
-                                <h5 class="text-xl font-bold text-blueGray-700">Feras EzzAldeen</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"> full stack developer</p>
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Feras EzzAldeen</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200"> full stack developer</p>
                                 <div class="mt-6">
                                     <a class="bg-blue-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button" href="https://www.linkedin.com/in/feras-ezz-aldeen/">
                                         <LinkedInIcon />
@@ -96,8 +96,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Anas} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center mb-9">
-                                <h5 class="text-xl font-bold text-blueGray-700">Anas AbuGhaliah</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Anas AbuGhaliah</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200">
                                     Full Stack Developer
                                 </p>
                                 <div class="mt-6">
@@ -116,8 +116,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Abdullah} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center">
-                                <h5 class="text-xl font-bold text-blueGray-700">Abdullah Elian</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">Full Stack Developer </p>
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Abdullah Elian</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200">Full Stack Developer </p>
                                 <div class="mt-6">
                                     <a class="bg-gray-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button" href="https://github.com/AbdullahElian1">
                                         <GitHubIcon />
@@ -140,8 +140,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Awon} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center">
-                                <h5 class="text-xl font-bold text-blueGray-700">Awon Khrais</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Awon Khrais</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200">
                                     Full Stack Developer
                                 </p>
                                 <div class="mt-6">
@@ -160,8 +160,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Saad} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center">
-                                <h5 class="text-xl font-bold text-blueGray-700">Saadoun Dhirat</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Saadoun Dhirat</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200">
                                     Full Stack Developer
                                 </p>
                                 <div class="mt-6">
@@ -180,8 +180,8 @@ export default function AboutUs() {
                         <div class="px-6">
                             <Image alt="..." src={Roaa} class="shadow-lg rounded-full mx-auto max-w-120-px" />
                             <div class="pt-6 text-center">
-                                <h5 class="text-xl font-bold text-blueGray-700">Roaa Mustafa</h5>
-                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                                <h5 class="text-xl font-bold text-blueGray-700 text-white">Roaa Mustafa</h5>
+                                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold text-gray-200">
                                     Full Stack Developer
                                 </p>
                                 <div class="mt-6">

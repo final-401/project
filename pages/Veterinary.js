@@ -92,7 +92,7 @@ export default function Veterinary() {
 
 
     return (
-        <div class="vet">
+        <div class="vet mancolbg">
 
 
             <Head>
@@ -119,7 +119,7 @@ export default function Veterinary() {
                 <Nav />
             </header>
 
-            <main className="mx-auto xl:container max-width:1280px">
+            <main className="mx-auto xl:container max-width:1280px mancolbg">
 
                 <h1 className="grid mt-5 text-2xl text-white text-grey-darkest justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
                 <h1 className="grid mt-5 text-2xl text-white text-grey-darkest justify-items-center">If your are a doctor and have a clinc you can add it </h1>
@@ -132,15 +132,15 @@ export default function Veterinary() {
                     {clinic.map((item) => {
                         return (
 
-                            <div id="app" className="flex mx-20 mt-10 bg-white rounded shadow-md w-120 h-60 card text-grey-darkest cardvet">
+                            <div id="app" className="flex mx-20 mt-10 bg-gray-200 rounded shadow-md w-120 h-60 card text-grey-darkest cardvet">
                                 <img className="w-1/2 h-full rounded-l-sm" src={item.picture} alt="Room Image" />
                                 <div className="flex flex-col w-full">
                                     <div className="flex-1 p-4 pb-0">
-                                        <span className="text-3xl text-white">{item.clinc_name}</span>
-                                        <h3 className="mb-1 font-light text-white">Location : {item.location}</h3>
-                                        <h3 className="mb-1 font-light text-white">Working hours : {item.starthoure + ' - ' + item.endhoure}</h3>
-                                        <h3 className="mb-1 font-light text-white">Email : {item.email}</h3>
-                                        <h3 className="mb-1 font-light text-white">Telephone : {item.phone}</h3>
+                                        <span className="text-3xl ">{item.clinc_name.toUpperCase()}</span>
+                                        <h3 className="mb-1 font-light ">Location : {item.location}</h3>
+                                        <h3 className="mb-1 font-light ">Working hours : {item.starthoure + ' - ' + item.endhoure}</h3>
+                                        <h3 className="mb-1 font-light ">Email : {item.email}</h3>
+                                        <h3 className="mb-1 font-light ">Telephone : {item.phone}</h3>
                                     </div>
 
                                 </div>

@@ -23,7 +23,7 @@ export default function HomePage() {
         <br></br>
 
         <div className="mt-4 md:mt-24">
-          <h2 className="text-2xl font-extrabold text-center text-gray-900 md:mb-20 ">
+          <h2 className="text-2xl font-extrabold text-center text-white md:mb-20 ">
             Services that we Provide
           </h2>
           <div className="flex flex-wrap ">
@@ -92,15 +92,15 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 md:mt-0 md:w-1/2">
-              <h3 className="text-2xl font-semibold text-center text-gray-800">
+              <h3 className="text-2xl font-semibold text-center text-white">
                 Our Task{" "}
               </h3>
-              <p className="max-w-md mt-4 text-center text-gray-600">
+              <p className="max-w-md mt-4 text-center text-gray-300">
                 Our task must be to free ourselves…by widening our circle of
                 compassion to embrace all living creatures and the whole of
                 nature and its beauty.
               </p>
-              <Link href="AboutUs/" className="block mt-8 text-center text-indigo-700">
+              <Link href="AboutUs/" className="block mt-8 text-center text-white ">
                 More About Us
                 <ArrowRightAltIcon />
               </Link>
@@ -113,7 +113,7 @@ export default function HomePage() {
         <div>
           <section className="px-4 mx-auto mt-12 mb-12 max-w-7xl sm:px-6 lg:px-4">
             <article>
-              <h2 className="text-2xl font-extrabold text-center text-gray-900">
+              <h2 className="text-2xl font-extrabold text-center text-white">
                 Articles
               </h2>
               <section className="grid mt-6 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">

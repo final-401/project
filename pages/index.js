@@ -9,7 +9,7 @@ import Nav from "../components/Nav";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="mancolbg">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -31,11 +31,11 @@ export default function Home() {
         />
       </Head>
 
-      <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
+      <header className="h-64 mx-auto mb-6 rounded xl:container max-h-16">
         <Nav />
       </header>
 
-      <main className="mx-auto rounded xl:container max-width:1280px">
+      <main className="mx-auto rounded xl:container max-width:1280px mancolbg">
         <HomePage />
       </main>
 

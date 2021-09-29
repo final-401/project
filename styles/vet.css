@@ -1,21 +1,11 @@
-.vet{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://images.pexels.com/photos/9330898/pexels-photo-9330898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-    background-repeat: no-repeat;
-    background-size: cover;
 
-}
-
+/* 
 .cardvet{
+    background-color:rgb(219, 216, 216); 
+
+} */
+/* .cardsup{
     background-color:rgba(0, 0, 0, 0.3); 
 
-}
-.cardsup{
-    background-color:rgba(0, 0, 0, 0.3); 
+} */
 
-}
-
-.supplies{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://images.pexels.com/photos/8434641/pexels-photo-8434641.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-    background-repeat: no-repeat;
-    background-size: cover;
-}

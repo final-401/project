@@ -80,7 +80,8 @@ export default function SignUp() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <div className='mancolbg'>
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -229,5 +230,7 @@ export default function SignUp() {
        
       </Container>
     </ThemeProvider>
+    </div>
+    
   );
 }

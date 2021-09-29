@@ -39,7 +39,7 @@ export default function SignIn() {
   
 
   return (
-    <div>
+    <div className='mancolbg'>
       
       <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

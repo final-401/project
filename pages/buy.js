@@ -120,7 +120,7 @@ export default function Home() {
 
     return (
 
-        <div className='' >
+        <div className='mancolbg' >
             <Head>
                 <title>Pets Care</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -142,13 +142,13 @@ export default function Home() {
                 />
             </Head>
 
-            <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
+            <header className="h-64 mx-auto mb-6 rounded xl:container max-h-16">
                 <Nav />
             </header>
 
-            <main className="mx-auto xl:container max-width:1880px ">
+            <main className="mx-auto xl:container max-width:1880px mancolbg ">
                 <div className='m-auto mt-12 align-middle w-72'>
-                    <Button className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" onClick={handleOpen}>You Have an offer??  add it!!</Button>
+                    <button className="inline-block px-4 py-2 mt-10 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" onClick={handleOpen}>You Have an offer??  add it!!</button>
                     <PetsFormUpdate open={openUpdate} datafrom={updateData} handleClose={handleCloseUpdate} />
                     <PetsForm open={open} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit}
                     />
