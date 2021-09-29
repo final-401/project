@@ -177,15 +177,16 @@ export default function Home() {
 
                                     </div>
                                     <div className='flex'>
-
-                                        <CardMedia
+                                        <img src={item.picture} alt="Paella dish"  className='max-w-md' />
+                                        {/* <CardMedia
                                             component="img"
-                                            height="194"
+                                            
                                             image={item.picture}
                                             alt="Paella dish"
-                                            className='w-96'
+                                            
+                                            
 
-                                        />
+                                        /> */}
                                         <div className='w-96'>
                                             <CardContent>
                                                 <Typography className='text-xl font-semibold' >
