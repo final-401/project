@@ -137,6 +137,9 @@ export default function CartForm() {
       ["1CxCpkBMpcbRjXNz", 10],
       ["X8XoKzMF8Ld7QRM7", 20],
       ["Caq4BT90ryL8Y2bN", 30],
+      ['Abdulha',95]
+
+
     ];
 
     promoteCode.forEach((element, idx) => {
@@ -157,14 +160,13 @@ export default function CartForm() {
 
 
   const handleCheckout =(()=>{
-    // var ans = window.prompt("Confirm checkout Enter Yes: ");
-    // if ( ans== "yes"){
-    //   cartItems.map((item)=>{
+    
+    cartItems.map((item)=>{
 
-    //     deleteResource(item.id)
-        
-    //   })
-    // }
+      deleteResource(item.id)
+      
+    })
+    
 
     Swal.fire({
       title: 'Thank you for your purchase from Us.',
