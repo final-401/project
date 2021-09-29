@@ -115,17 +115,17 @@ export default function Veterinary() {
                     href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
                 />
             </Head>
-            <header className="flex flex-col justify-center align-center">
+            <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
                 <Nav />
             </header>
 
-            <main className="mx-auto  xl:container max-width:1280px">
+            <main className="mx-auto xl:container max-width:1280px">
 
-                <h1 className="text-2xl text-grey-darkest text-white mt-5 grid justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
-                <h1 className="text-2xl text-grey-darkest text-white mt-5 grid justify-items-center">If your are a doctor and have a clinc you can add it </h1>
-                <div className='m-auto align-middle mt-5 w-72'>
-                    {user && user.role == 'doctor' ?  <button onClick={handleOpen} className="inline-block px-4 py-2 text-green-500 font-semibold border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" >Add Your Clinc In Our Website</button> : <p></p> }
-                   
+                <h1 className="grid mt-5 text-2xl text-white text-grey-darkest justify-items-center">Here you will find good and reliable clinics to take care of your pet</h1>
+                <h1 className="grid mt-5 text-2xl text-white text-grey-darkest justify-items-center">If your are a doctor and have a clinc you can add it </h1>
+                <div className='m-auto mt-5 align-middle w-72'>
+                    {user && user.role == 'doctor' ? <button onClick={handleOpen} className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" >Add Your Clinc In Our Website</button> : <p></p>}
+
                 </div>
 
                 <div className="grid grid-cols-2 ">

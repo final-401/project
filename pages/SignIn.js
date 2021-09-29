@@ -40,7 +40,7 @@ export default function SignIn() {
 
   return (
     <div>
-      <button onClick={logout}>logout</button>
+      
       <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -79,7 +79,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            {user?<p>{user.firstname}</p>:<p>nooooooooooo</p>}
+           
             <Button
               type="submit"
               fullWidth

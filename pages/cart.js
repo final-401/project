@@ -28,7 +28,7 @@ export default function cart() {
         />
       </Head>
 
-      <header className="flex flex-col justify-center my-5 align-center">
+      <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
         <Nav />
       </header>
 

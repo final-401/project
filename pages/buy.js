@@ -27,13 +27,13 @@ import PetsFormUpdate from '../components/PetsFormUpdate';
 
 export default function Home() {
 
-    
 
 
 
 
 
-    
+
+
     const [imageurl, setImageurl] = useState('');
     const handleInputChange = (e) => {
 
@@ -50,7 +50,7 @@ export default function Home() {
     }
 
 
-    const { resources, loading, createResource, deleteResource,updateResource } = useResource();
+    const { resources, loading, createResource, deleteResource, updateResource } = useResource();
     const [user, setUser] = useState([])
     const [pets, setPets] = useState([])
     useEffect(() => {
@@ -106,17 +106,17 @@ export default function Home() {
     const [openUpdate, setOpenUpdate] = useState(false);
     const handleCloseUpdate = () => setOpenUpdate(false);
     const [updateData, setupdateData] = useState([])
-    const handleupdate = (item) =>{
-        
+    const handleupdate = (item) => {
+
         console.log(item)
         setupdateData(item)
         setOpenUpdate(true)
         console.log(updateData)
 
-        
-    } 
 
- 
+    }
+
+
 
     return (
 
@@ -141,15 +141,15 @@ export default function Home() {
                     href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
                 />
             </Head>
-            <header className="flex flex-col justify-center my-5 align-center">
+
+            <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
                 <Nav />
             </header>
-
 
             <main className="mx-auto xl:container max-width:1280px">
                 <div className='m-auto mt-12 align-middle w-72'>
                     <Button className="inline-block px-4 py-2 font-semibold text-green-500 border-2 border-green-500 rounded-md hover:bg-green-700 hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100" onClick={handleOpen}>You Have an offer??  add it!!</Button>
-                    <PetsFormUpdate open={openUpdate}  datafrom={updateData} handleClose={handleCloseUpdate}  />
+                    <PetsFormUpdate open={openUpdate} datafrom={updateData} handleClose={handleCloseUpdate} />
                     <PetsForm open={open} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit}
                     />
                 </div>
@@ -162,7 +162,7 @@ export default function Home() {
                                     <div>
                                         <CardHeader
                                             sx={{
-                                                
+
                                             }}
                                             avatar={
                                                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -189,23 +189,23 @@ export default function Home() {
                                         <div className='w-96'>
                                             <CardContent>
                                                 <Typography className='text-xl font-semibold' >
-                                                    <FormatColorTextIcon/> name: {item.name_pet}<br />
-                                                    <PetsIcon/>     type : {item.type}  <br/>
+                                                    <FormatColorTextIcon /> name: {item.name_pet}<br />
+                                                    <PetsIcon />     type : {item.type}  <br />
                                                     <div className='flex'>
-                                                    <MonetizationOnIcon/>
-                                                       {item.price == 0 ?  <p> &nbsp;for adoption </p>: <p>   Price: {item.price}</p>}
+                                                        <MonetizationOnIcon />
+                                                        {item.price == 0 ? <p> &nbsp;for adoption </p> : <p>   Price: {item.price}</p>}
                                                     </div>
-                                                    
+
                                                 </Typography>
                                             </CardContent>
 
                                             <CardContent>
-                                            <Typography className='text-xl font-semibold' >
-                                                        
-                                                    <NoteAltIcon/> Description
-                                                    
+                                                <Typography className='text-xl font-semibold' >
+
+                                                    <NoteAltIcon /> Description
+
                                                 </Typography>
-                                                <Typography className='ffeerraass' style={{ width:'25rem',maxHeight:'50rem'}} paragraph={true} nowrap={false} >
+                                                <Typography className='ffeerraass' style={{ width: '25rem', maxHeight: '50rem' }} paragraph={true} nowrap={false} >
                                                     {item.description}
 
                                                 </Typography>
@@ -216,9 +216,9 @@ export default function Home() {
                                         </div>
                                         <div>
                                             {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-md bottom-2 right-48 hover:bg-red-700 hover:text-white hover:border-red-700 focus:outline-none focus:ring focus:ring-red-100" onClick={() => deleteResource(item.id)} >Delete</Button> : <p></p>}
-                                            {user&&user.user_id==item.user.id? <Button className="absolute inline-block px-4 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-md bottom-2 right-72 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus:outline-none focus:ring focus:ring-blue-100" onClick={()=>handleupdate(item)} >update</Button>:<p></p>}
+                                            {user && user.user_id == item.user.id ? <Button className="absolute inline-block px-4 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-md bottom-2 right-72 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus:outline-none focus:ring focus:ring-blue-100" onClick={() => handleupdate(item)} >update</Button> : <p></p>}
 
-                                            
+
 
 
                                         </div>

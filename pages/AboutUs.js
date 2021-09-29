@@ -12,10 +12,15 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import img1 from '../AboutImages/helperImgs/dog5.jpg';
 import img2 from '../AboutImages/helperImgs/dog3.jpg';
 import img3 from '../AboutImages/helperImgs/dog6.jpg';
+import Nav from "../components/Nav";
+
 // import { dividerClasses } from '@mui/material';
 export default function AboutUs() {
     return (
         <div>
+           <header className="h-64 mx-auto mb-20 rounded xl:container max-h-16">
+                <Nav />
+            </header>
             <div>
                 <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center ">
                     <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg h-96">

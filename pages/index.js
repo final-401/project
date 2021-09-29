@@ -6,7 +6,6 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Supplies from "./Supplies";
 import Nav from "../components/Nav";
-import NavFinal from "../components/NavFinal";
 
 export default function Home() {
   return (
@@ -33,7 +32,7 @@ export default function Home() {
       </Head>
 
       <header className="h-64 mx-auto mb-32 rounded xl:container max-h-16">
-        <NavFinal />
+        <Nav />
       </header>
 
       <main className="mx-auto rounded xl:container max-width:1280px">
